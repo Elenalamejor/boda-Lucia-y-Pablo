@@ -433,66 +433,78 @@
   </section>
 
   <!-- 8. RSVP -->
-  <section id="rsvp">
-    <div class="rsvp-inner">
-      <div class="reveal">
-        <span class="section-label">RSVP</span>
-        <h2 class="section-title">¿Nos acompañas?</h2>
-        <p class="section-body">Confírmanos tu asistencia antes del <strong style="color:var(--gold2);font-weight:400">1 de marzo de 2027</strong>. Nos ayudará muchísimo para organizar el gran día.</p>
-      </div>
+ <section id="rsvp">
+  <div class="rsvp-inner">
+    <div class="reveal">
+      <span class="section-label">RSVP</span>
+      <h2 class="section-title">¿Nos acompañas?</h2>
+      <p class="section-body">Confírmanos tu asistencia antes del <strong style="color:var(--gold2);font-weight:400">1 de marzo de 2027</strong>. Nos ayudará muchísimo para organizar el gran día.</p>
+    </div>
 
-      <form class="rsvp-form reveal" id="rsvp-form">
-        <div class="rsvp-row">
-          <div class="rsvp-field">
-            <input type="text" id="r-nombre" placeholder="Tu nombre completo">
-          </div>
-          <div class="rsvp-field">
-            <input type="email" id="r-email" placeholder="Tu email">
-          </div>
-        </div>
-        <div class="rsvp-row">
-          <div class="rsvp-field">
-            <select id="r-asistencia">
-              <option value="" disabled selected>¿Confirmas asistencia?</option>
-              <option value="si">Sí, asistiré con mucho gusto 🎉</option>
-              <option value="dos">Sí, asistiré a los dos eventos</option>
-              <option value="boda">Solo a la boda (sábado)</option>
-              <option value="preboda">Solo a la preboda (viernes)</option>
-              <option value="no">Lo siento, no podré asistir</option>
-            </select>
-          </div>
-          <div class="rsvp-field">
-            <select id="r-personas">
-              <option value="" disabled selected>Nº de personas (incluida tú)</option>
-              <option value="1">1 persona</option>
-              <option value="2">2 personas</option>
-            </select>
-          </div>
+    <form class="rsvp-form reveal" id="rsvp-form">
+
+      <div class="rsvp-row">
+        <div class="rsvp-field">
+          <label for="r-nombre" class="sr-only">Nombre completo</label>
+          <input type="text" id="r-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name">
         </div>
         <div class="rsvp-field">
-          <select id="r-menu">
-            <option value="" disabled selected>Menú especial (si aplica)</option>
-            <option>Sin restricciones</option>
-            <option>Vegetariano</option>
-            <option>Vegano</option>
-            <option>Sin gluten (celíaco)</option>
-            <option>Sin lactosa</option>
-            <option>Sin mariscos</option>
-            <option>Sin frutos secos</option>
-            <option>Otro (indicar en el campo de abajo)</option>
+          <label for="r-email" class="sr-only">Email</label>
+          <input type="email" id="r-email" name="email" placeholder="Tu email" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="rsvp-row">
+        <div class="rsvp-field">
+          <label for="r-asistencia" class="sr-only">Confirmación de asistencia</label>
+          <select id="r-asistencia" name="asistencia">
+            <option value="" disabled selected>¿Confirmas asistencia?</option>
+            <option value="si">Sí, asistiré con mucho gusto 🎉</option>
+            <option value="dos">Sí, asistiré a los dos eventos</option>
+            <option value="boda">Solo a la boda (sábado)</option>
+            <option value="preboda">Solo a la preboda (viernes)</option>
+            <option value="no">Lo siento, no podré asistir</option>
           </select>
         </div>
         <div class="rsvp-field">
-          <textarea id="r-notas" rows="3" placeholder="Alergias, intolerancias o cualquier cosa que debamos saber..."></textarea>
+          <label for="r-personas" class="sr-only">Número de personas</label>
+          <select id="r-personas" name="personas">
+            <option value="" disabled selected>Nº de personas (incluida tú)</option>
+            <option value="1">1 persona</option>
+            <option value="2">2 personas</option>
+          </select>
         </div>
-        <button type="button" class="rsvp-submit" onclick="submitRSVP()">Confirmar asistencia</button>
-      </form>
+      </div>
 
-      <p class="rsvp-success" id="rsvp-success">
-        ¡Gracias! Ya tenemos ganas<br>de veros el 24 de abril ✦
-      </p>
-    </div>
-  </section>
+      <div class="rsvp-field">
+        <label for="r-menu" class="sr-only">Menú especial</label>
+        <select id="r-menu" name="menu">
+          <option value="" disabled selected>Menú especial (si aplica)</option>
+          <option value="sin-restricciones">Sin restricciones</option>
+          <option value="vegetariano">Vegetariano</option>
+          <option value="vegano">Vegano</option>
+          <option value="sin-gluten">Sin gluten (celíaco)</option>
+          <option value="sin-lactosa">Sin lactosa</option>
+          <option value="sin-mariscos">Sin mariscos</option>
+          <option value="sin-frutos-secos">Sin frutos secos</option>
+          <option value="otro">Otro (indicar en el campo de abajo)</option>
+        </select>
+      </div>
+
+      <div class="rsvp-field">
+        <label for="r-notas" class="sr-only">Notas adicionales</label>
+        <textarea id="r-notas" name="notas" rows="3" placeholder="Alergias, intolerancias o cualquier cosa que debamos saber..."></textarea>
+      </div>
+
+      <button type="button" class="rsvp-submit" onclick="submitRSVP()">Confirmar asistencia</button>
+
+    </form>
+
+    <p class="rsvp-success" id="rsvp-success">
+      ¡Gracias! Ya tenemos ganas<br>de veros el 24 de abril ✦
+    </p>
+  </div>
+</section>
 
   <!-- 9. FOOTER -->
   <footer>
