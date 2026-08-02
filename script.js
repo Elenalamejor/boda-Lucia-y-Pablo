@@ -76,14 +76,20 @@ function submitRSVP() {
   const menu       = document.getElementById('r-menu').value.trim();
   const notas      = document.getElementById('r-notas').value.trim();
 
+  // Validación estricta: sólo permite 'si' o 'no'
+  if (asistencia !== 'si' && asistencia !== 'no') {
+    alert('Por favor, selecciona si asistirás o no.');
+    return;
+  }
+
   if (asistencia === 'no') {
-    if (!nombre || !email || !asistencia) {
-      alert('Por favor, rellena nombre, email y asistencia.');
+    if (!nombre || !email) {
+      alert('Por favor, rellena nombre y email.');
       return;
     }
   } else {
-    if (!nombre || !email || !asistencia || !personas || !menu) {
-      alert('Por favor, rellena todos los campos.');
+    if (!nombre || !email || !personas || !menu) {
+      alert('Por favor, rellena todos los campos obligatorios.');
       return;
     }
   }
