@@ -117,8 +117,35 @@ function submitRSVP() {
     submitBtn.disabled = false;
     submitBtn.innerText = originalText;
   });
+/* ── CARGAR FOTOS EN LA GALERÍA ── */
+function cargarGalería() {
+  const gridContainer = document.getElementById('grid-fotos');
+  
+  fetch(SCRIPT_URL)
+    .then(response => response.json())
+    .then(data => {
+      if (data.result === 'success' && data.fotos.length > 0) {
+        gridContainer.innerHTML = ''; // Limpiar mensaje de carga
+        
+        data.fotos.forEach(foto => {
+          const item = document.createElement('div');
+          item.className = 'foto-item';
+          item.innerHTML = `<img src="${foto.url}" alt="Foto de la boda" loading="lazy">`;
+          gridContainer.appendChild(item);
+        });
+      } else {
+        gridContainer.innerHTML = '<p style="text-align: center; width: 100%; color: #666;">Aún no hay fotos. ¡Sé el primero en subir una!</p>';
+      }
+    })
+    .catch(err => {
+      console.error('Error al cargar la galería:', err);
+      gridContainer.innerHTML = '<p style="text-align: center; width: 100%; color: #666;">No se pudieron cargar las fotos en este momento.</p>';
+    });
 }
-/* ── SUBIR FOTOS A GOOGLE DRIVE ── */
+
+// Cargar la galería automáticamente al abrir la página
+document.addEventListener('DOMContentLoaded', cargarGalería);
+  /* ── SUBIR FOTOS Y REFRESCAR GALERÍA ── */
 function uploadFoto() {
   const nombreInput = document.getElementById('f-nombre').value.trim();
   const fileInput   = document.getElementById('f-archivo');
@@ -157,6 +184,9 @@ function uploadFoto() {
       document.getElementById('foto-success').style.display = 'block';
       btn.disabled = false;
       btn.innerText = 'SUBIR OTRA FOTO';
+      
+      // Esperar 2 segundos a que Drive procese el archivo y refrescar la galería
+      setTimeout(cargarGalería, 2000);
     })
     .catch(err => {
       console.error(err);
@@ -168,7 +198,6 @@ function uploadFoto() {
 
   reader.readAsDataURL(file);
 }
-
 /* ── CUENTA ATRÁS ── */
 const boda = new Date('2027-04-24T13:00:00').getTime();
 
