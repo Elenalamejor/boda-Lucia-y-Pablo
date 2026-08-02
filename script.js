@@ -117,14 +117,18 @@ function submitRSVP() {
     submitBtn.disabled = false;
     submitBtn.innerText = originalText;
   });
+} // <--- SE AÑADIÓ LA LLAVE DE CIERRE FALTANTE AQUÍ
+
 /* ── CARGAR FOTOS EN LA GALERÍA ── */
 function cargarGalería() {
   const gridContainer = document.getElementById('grid-fotos');
+  if (!gridContainer) return;
   
+  // Para recibir JSON desde Google Apps Script se debe omitir mode: 'no-cors'
   fetch(SCRIPT_URL)
     .then(response => response.json())
     .then(data => {
-      if (data.result === 'success' && data.fotos.length > 0) {
+      if (data.result === 'success' && data.fotos && data.fotos.length > 0) {
         gridContainer.innerHTML = ''; // Limpiar mensaje de carga
         
         data.fotos.forEach(foto => {
@@ -145,7 +149,8 @@ function cargarGalería() {
 
 // Cargar la galería automáticamente al abrir la página
 document.addEventListener('DOMContentLoaded', cargarGalería);
-  /* ── SUBIR FOTOS Y REFRESCAR GALERÍA ── */
+
+/* ── SUBIR FOTOS Y REFRESCAR GALERÍA ── */
 function uploadFoto() {
   const nombreInput = document.getElementById('f-nombre').value.trim();
   const fileInput   = document.getElementById('f-archivo');
@@ -198,23 +203,32 @@ function uploadFoto() {
 
   reader.readAsDataURL(file);
 }
+
 /* ── CUENTA ATRÁS ── */
 const boda = new Date('2027-04-24T13:00:00').getTime();
 
 function tickCD() {
+  const cdContainer = document.getElementById('countdown');
+  if (!cdContainer) return;
+
   const diff = boda - Date.now();
 
   if (diff <= 0) {
-    document.getElementById('countdown').innerHTML =
+    cdContainer.innerHTML =
       '<p style="text-align:center;font-family:Cormorant Garamond,serif;font-size:40px;font-style:italic;color:var(--dark);padding:80px">¡Hoy es el gran día!</p>';
     return;
   }
 
   const pad = n => String(n).padStart(2, '0');
-  document.getElementById('cd-dias').textContent  = Math.floor(diff / 86400000);
-  document.getElementById('cd-horas').textContent = pad(Math.floor((diff % 86400000) / 3600000));
-  document.getElementById('cd-min').textContent   = pad(Math.floor((diff % 3600000) / 60000));
-  document.getElementById('cd-seg').textContent   = pad(Math.floor((diff % 60000) / 1000));
+  const elDias = document.getElementById('cd-dias');
+  const elHoras = document.getElementById('cd-horas');
+  const elMin = document.getElementById('cd-min');
+  const elSeg = document.getElementById('cd-seg');
+
+  if (elDias) elDias.textContent  = Math.floor(diff / 86400000);
+  if (elHoras) elHoras.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+  if (elMin) elMin.textContent   = pad(Math.floor((diff % 3600000) / 60000));
+  if (elSeg) elSeg.textContent   = pad(Math.floor((diff % 60000) / 1000));
 }
 
 tickCD();
