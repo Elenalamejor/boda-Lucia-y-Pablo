@@ -118,6 +118,56 @@ function submitRSVP() {
     submitBtn.innerText = originalText;
   });
 }
+/* ── SUBIR FOTOS A GOOGLE DRIVE ── */
+function uploadFoto() {
+  const nombreInput = document.getElementById('f-nombre').value.trim();
+  const fileInput   = document.getElementById('f-archivo');
+  const file        = fileInput.files[0];
+  const btn         = document.getElementById('btn-foto');
+
+  if (!file) {
+    alert('Por favor, selecciona una foto.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerText = 'SUBIENDO...';
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const rawData = e.target.result.split(',')[1];
+    
+    const payload = {
+      tipo: 'foto',
+      archivo: {
+        data: rawData,
+        mimeType: file.type,
+        nombre: `${nombreInput}_${Date.now()}_${file.name}`
+      }
+    };
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      document.getElementById('foto-form').reset();
+      document.getElementById('foto-success').style.display = 'block';
+      btn.disabled = false;
+      btn.innerText = 'SUBIR OTRA FOTO';
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Error al subir la imagen. Inténtalo de nuevo.');
+      btn.disabled = false;
+      btn.innerText = 'SUBIR FOTO';
+    });
+  };
+
+  reader.readAsDataURL(file);
+}
 
 /* ── CUENTA ATRÁS ── */
 const boda = new Date('2027-04-24T13:00:00').getTime();
