@@ -1,5 +1,5 @@
 /* ── URL DE GOOGLE APPS SCRIPT ── */
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYC6zYnxdcdsk1i57Uv1vbR9Y6zIARucmJRULTvlsTBA7JtgVxRb2kF1MZ-ecBbbHyVw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzN_7pHY4urRuXLO8f4GFRk5I-qQw495Ux2E4ulGcsUPRoB9a9OpWyZU_PwlKvhi6wXNg/exec';
 
 /* ── NAV: añade clase 'scrolled' al hacer scroll ── */
 const nav = document.getElementById('nav');
