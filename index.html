@@ -762,7 +762,33 @@
             </p>
          </div>
       </section>
+<!-- SECCIÓN SUBIR FOTOS -->
+<section id="galeria" class="rsvp-section reveal">
+  <div class="container">
+    <h2 class="section-title">Comparte tus Fotos</h2>
+    <p class="section-subtitle">¡Sube los momentos inolvidables que captes durante la boda!</p>
 
+    <div class="rsvp-card">
+      <form id="foto-form" onsubmit="event.preventDefault(); uploadFoto();">
+        <div class="form-group">
+          <label for="f-nombre">Tu Nombre</label>
+          <input type="text" id="f-nombre" placeholder="Ej. Carlos" required>
+        </div>
+
+        <div class="form-group">
+          <label for="f-archivo">Selecciona tu foto</label>
+          <input type="file" id="f-archivo" accept="image/*" required>
+        </div>
+
+        <button type="submit" id="btn-foto" class="rsvp-submit">SUBIR FOTO</button>
+      </form>
+
+      <div id="foto-success" style="display: none; text-align: center; padding: 20px;">
+        <p style="font-size: 18px; color: var(--dark, #333);">¡Foto subida con éxito! Gracias por compartirla. ❤️</p>
+      </div>
+    </div>
+  </div>
+</section>
       <!-- 9. FOOTER -->
       <footer>
          <div class="footer-names">Lucía & Pablo</div>
