@@ -1,3 +1,6 @@
+/* ── URL DE GOOGLE APPS SCRIPT ── */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYC6zYnxdcdsk1i57Uv1vbR9Y6zIARucmJRULTvlsTBA7JtgVxRb2kF1MZ-ecBbbHyVw/exec';
+
 /* ── NAV: añade clase 'scrolled' al hacer scroll ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -40,8 +43,6 @@ function toggleFaq(btn) {
 }
 
 /* ── RSVP ── */
-
-// Deshabilitar campos si el usuario no asiste
 const asistenciaInput = document.getElementById('r-asistencia');
 const personasInput   = document.getElementById('r-personas');
 const menuInput       = document.getElementById('r-menu');
@@ -59,7 +60,6 @@ asistenciaInput.addEventListener('change', function () {
   }
 });
 
-// Limitar número de personas entre 1 y 2
 personasInput.addEventListener('input', function () {
   const valor = parseInt(this.value);
   if (isNaN(valor)) return;
@@ -67,14 +67,14 @@ personasInput.addEventListener('input', function () {
   if (valor > 2) this.value = 2;
 });
 
-// Envío del formulario RSVP
+// Envío del formulario RSVP a Google Sheets
 function submitRSVP() {
-  const nombre    = document.getElementById('r-nombre').value.trim();
-  const email     = document.getElementById('r-email').value.trim();
+  const nombre     = document.getElementById('r-nombre').value.trim();
+  const email      = document.getElementById('r-email').value.trim();
   const asistencia = document.getElementById('r-asistencia').value;
-  const personas  = document.getElementById('r-personas').value;
-  const menu      = document.getElementById('r-menu').value.trim();
-  const notas     = document.getElementById('r-notas').value.trim();
+  const personas   = document.getElementById('r-personas').value;
+  const menu       = document.getElementById('r-menu').value.trim();
+  const notas      = document.getElementById('r-notas').value.trim();
 
   if (asistencia === 'no') {
     if (!nombre || !email || !asistencia) {
@@ -88,11 +88,29 @@ function submitRSVP() {
     }
   }
 
-  // Aquí puedes conectar con un backend, Formspree, Netlify Forms, etc.
-  console.log({ nombre, email, asistencia, personas, menu, notas });
+  const submitBtn = document.querySelector('.rsvp-submit');
+  const originalText = submitBtn.innerText;
+  submitBtn.disabled = true;
+  submitBtn.innerText = 'ENVIANDO...';
 
-  document.getElementById('rsvp-form').style.display = 'none';
-  document.getElementById('rsvp-success').style.display = 'block';
+  const payload = { nombre, email, asistencia, personas, menu, notas };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    document.getElementById('rsvp-form').style.display = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  })
+  .catch(error => {
+    console.error('Error al enviar:', error);
+    alert('Hubo un problema al enviar la confirmación.');
+    submitBtn.disabled = false;
+    submitBtn.innerText = originalText;
+  });
 }
 
 /* ── CUENTA ATRÁS ── */
