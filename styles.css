@@ -9,13 +9,13 @@
   --terra:   #8b5e4a;
   --green:   #4a5c45;
   --border:  rgba(184,157,114,0.25);
-  --paper:       #e8dcc4;
-  --paper-mid:   #dccca6;
-  --paper-shadow:#c9b587;
-  --wax:         #8a6339;
-  --wax-light:   #a97f4b;
-  --wax-dark:    #5c3f22;
-  --ink:         #4a3a22;
+  --paper:       #d9c9a3;
+  --paper-mid:   #c3ae7f;
+  --paper-shadow:#a68e60;
+  --wax:         #7a1f1f;
+  --wax-light:   #a83232;
+  --wax-dark:    #3f1010;
+  --ink:         #3c2e1a;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -47,14 +47,17 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 }
 #intro-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-/* Textura de papel kraft reutilizable, generada con ruido SVG (sin imágenes externas) */
+/* Textura de papel envejecido reutilizable: ruido + manchas + viñeteado, generado con SVG/CSS (sin imágenes externas) */
 .env-back, .env-flap, .env-pocket {
   background-color: var(--paper);
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.28 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse at 28% 18%, rgba(255,255,255,0.35), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.22 0 0 0 0 0.15 0 0 0 0 0.06 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 45% 30% at 78% 72%, rgba(90,62,26,0.28), transparent 70%),
+    radial-gradient(ellipse 35% 25% at 15% 85%, rgba(90,62,26,0.22), transparent 70%),
+    radial-gradient(ellipse 40% 28% at 88% 15%, rgba(90,62,26,0.2), transparent 70%),
+    radial-gradient(ellipse 70% 60% at 50% 45%, transparent 55%, rgba(40,26,10,0.35) 100%),
     linear-gradient(160deg, var(--paper) 0%, var(--paper-mid) 55%, var(--paper-shadow) 100%);
-  background-blend-mode: overlay, normal, normal;
+  background-blend-mode: overlay, multiply, multiply, multiply, normal, normal;
 }
 
 .envelope {
@@ -82,9 +85,9 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   position: absolute;
   left: 7%; right: 7%; top: 9%;
   height: 82%;
-  background: var(--white);
+  background: var(--cream);
   z-index: 1;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25), inset 0 0 40px rgba(90,62,26,0.12);
   display: flex; align-items: center; justify-content: center; text-align: center;
   padding: 10%;
   transform: translateY(4%);
