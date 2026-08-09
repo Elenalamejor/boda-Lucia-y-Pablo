@@ -9,6 +9,13 @@
   --terra:   #8b5e4a;
   --green:   #4a5c45;
   --border:  rgba(184,157,114,0.25);
+  --paper:       #e8dcc4;
+  --paper-mid:   #dccca6;
+  --paper-shadow:#c9b587;
+  --wax:         #8a6339;
+  --wax-light:   #a97f4b;
+  --wax-dark:    #5c3f22;
+  --ink:         #4a3a22;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -35,18 +42,25 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 5vh;
   padding: 5vh 24px;
-  background:
-    radial-gradient(circle at 50% 28%, rgba(184,157,114,0.22), transparent 62%),
-    var(--dark);
+  background: var(--dark);
   transition: opacity 0.9s ease, visibility 0.9s ease;
 }
 #intro-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-/* En móvil el sobre es el protagonista: ocupa casi toda la pantalla */
+/* Textura de papel kraft reutilizable, generada con ruido SVG (sin imágenes externas) */
+.env-back, .env-flap, .env-pocket {
+  background-color: var(--paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.28 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 28% 18%, rgba(255,255,255,0.35), transparent 55%),
+    linear-gradient(160deg, var(--paper) 0%, var(--paper-mid) 55%, var(--paper-shadow) 100%);
+  background-blend-mode: overlay, normal, normal;
+}
+
 .envelope {
   position: relative;
-  width: min(420px, 84vw);
-  aspect-ratio: 3 / 2;
+  width: min(440px, 84vw);
+  aspect-ratio: 3 / 4;
   cursor: pointer;
   perspective: 1200px;
   animation: envFloat 5s ease-in-out infinite;
@@ -61,7 +75,6 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 
 .env-back {
   position: absolute; inset: 0;
-  background: var(--cream2);
   box-shadow: 0 20px 60px rgba(0,0,0,0.45);
 }
 
@@ -77,50 +90,71 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   transform: translateY(4%);
   transition: transform 1.3s cubic-bezier(.5,-0.15,.2,1.25) 0.25s;
 }
-.env-letter-content { display: flex; flex-direction: column; gap: 12px; }
+.env-letter-content { display: flex; flex-direction: column; gap: 14px; }
 .env-letter-eyebrow {
   font-size: clamp(9px, 2.2vw, 11px); letter-spacing: 3px; text-transform: uppercase;
   color: var(--gold); font-weight: 400;
 }
 .env-letter-names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(26px, 8vw, 36px); font-weight: 300; color: var(--dark);
+  font-family: 'Beau Rivage', cursive;
+  font-size: clamp(34px, 9vw, 46px); font-weight: 400; color: var(--ink);
+  line-height: 1.1;
 }
-.env-letter-names em { font-style: italic; color: var(--terra); }
+.env-letter-names em { font-style: normal; color: var(--terra); }
 .env-letter-date {
   font-size: clamp(10px, 2.4vw, 12px); letter-spacing: 3px; color: var(--muted);
 }
 
+/* Solapas inferiores del sobre: forman la segunda "V" que se ve por detrás del sello */
 .env-pocket {
   position: absolute; inset: 0; z-index: 2;
   clip-path: polygon(0 100%, 50% 42%, 100% 100%);
-  background: var(--cream2);
-}
-.env-pocket::after {
-  content: ''; position: absolute; inset: 0;
-  clip-path: polygon(0 100%, 50% 42%, 100% 100%);
-  background: linear-gradient(180deg, rgba(0,0,0,0.06), transparent 40%);
+  filter: drop-shadow(0 -1px 0.6px rgba(74,58,32,0.3));
 }
 
+/* Solapa superior: la que se abre. Lleva los nombres impresos, como en un sobre real */
 .env-flap {
   position: absolute; inset: 0; z-index: 3;
-  clip-path: polygon(0 0, 100% 0, 50% 56%);
-  background: linear-gradient(135deg, var(--gold2), var(--gold));
+  clip-path: polygon(0 0, 100% 0, 50% 44%);
   transform-origin: top center;
   transform-style: preserve-3d;
+  backface-visibility: hidden;
   transition: transform 1.1s cubic-bezier(.7,0,.3,1);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  filter: drop-shadow(0 1px 0.6px rgba(74,58,32,0.35));
 }
 
+.env-flap-names {
+  position: absolute;
+  left: 50%; top: 15%;
+  transform: translateX(-50%);
+  width: 80%;
+  text-align: center;
+  font-family: 'Beau Rivage', cursive;
+  font-size: clamp(30px, 8vw, 40px);
+  color: var(--ink);
+  line-height: 1.15;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+}
+.env-flap-names em { font-style: normal; color: var(--terra); }
+
 .env-seal {
-  position: absolute; top: 40%; left: 50%; z-index: 4;
+  position: absolute; top: 42%; left: 50%; z-index: 4;
   transform: translate(-50%, -50%);
-  width: clamp(46px, 12vw, 58px); height: clamp(46px, 12vw, 58px); border-radius: 50%;
-  background: var(--terra); color: #fff;
+  width: clamp(52px, 13vw, 64px); height: clamp(52px, 13vw, 64px); border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, var(--wax-light), var(--wax) 55%, var(--wax-dark) 100%);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(14px, 3.6vw, 17px);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.15);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.12),
+    inset 0 -3px 6px rgba(0,0,0,0.35),
+    inset 0 3px 5px rgba(255,255,255,0.18);
   transition: opacity 0.4s, transform 0.4s;
+}
+.env-seal-leaf {
+  width: 52%; height: 52%;
+  fill: rgba(255,244,222,0.55);
+  color: rgba(255,244,222,0.4);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.3)) drop-shadow(0 -1px 0 rgba(255,255,255,0.15));
 }
 
 .envelope.open .env-flap { transform: rotateX(-180deg); }
@@ -150,13 +184,16 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   .env-back { box-shadow: none; }
   .env-letter { box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
   .env-letter-content { gap: 18px; }
+  .env-flap-names { top: 12%; font-size: clamp(34px, 11vw, 46px); }
   .intro-hint {
     position: absolute;
     left: 50%; bottom: max(32px, env(safe-area-inset-bottom) + 24px);
     transform: translateX(-50%);
     font-size: 12px; letter-spacing: 2.5px; text-align: center;
     white-space: nowrap; z-index: 6;
+    color: rgba(74,58,32,0.65);
   }
+  .intro-hint::before, .intro-hint::after { background: rgba(74,58,32,0.35); }
 }
 
 @keyframes envFloatMobile {
