@@ -29,22 +29,23 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: var(--gold); }
 
-/* ── SOBRE DE BIENVENIDA ── */
+/* ── SOBRE DE BIENVENIDA (PANTALLA COMPLETA EN MÓVIL Y WEB) ── */
 #intro-overlay {
   position: fixed; inset: 0; z-index: 3000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 32px;
+  gap: 24px;
   background:
     radial-gradient(circle at 50% 30%, rgba(184,157,114,0.18), transparent 60%),
     var(--dark);
   transition: opacity 0.9s ease, visibility 0.9s ease;
+  padding: 20px;
 }
 #intro-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
 .envelope {
   position: relative;
-  width: min(360px, 78vw);
-  aspect-ratio: 3 / 2;
+  width: min(420px, 92vw);
+  height: min(280px, 60vh);
   cursor: pointer;
   perspective: 1200px;
 }
@@ -53,33 +54,33 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 .env-back {
   position: absolute; inset: 0;
   background: var(--cream2);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 .env-letter {
   position: absolute;
-  left: 7%; right: 7%; top: 9%;
-  height: 82%;
+  left: 5%; right: 5%; top: 5%;
+  height: 90%;
   background: var(--white);
   z-index: 1;
   box-shadow: 0 8px 24px rgba(0,0,0,0.25);
   display: flex; align-items: center; justify-content: center; text-align: center;
-  padding: 10%;
+  padding: 8%;
   transform: translateY(4%);
   transition: transform 1.3s cubic-bezier(.5,-0.15,.2,1.25) 0.25s;
 }
-.env-letter-content { display: flex; flex-direction: column; gap: 10px; }
+.env-letter-content { display: flex; flex-direction: column; gap: 8px; }
 .env-letter-eyebrow {
-  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
   color: var(--gold); font-weight: 400;
 }
 .env-letter-names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 5vw, 30px); font-weight: 300; color: var(--dark);
+  font-size: clamp(24px, 6vw, 36px); font-weight: 300; color: var(--dark);
 }
 .env-letter-names em { font-style: italic; color: var(--terra); }
 .env-letter-date {
-  font-size: 10px; letter-spacing: 3px; color: var(--muted);
+  font-size: 11px; letter-spacing: 3px; color: var(--muted);
 }
 
 .env-pocket {
@@ -106,10 +107,10 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 .env-seal {
   position: absolute; top: 40%; left: 50%; z-index: 4;
   transform: translate(-50%, -50%);
-  width: 46px; height: 46px; border-radius: 50%;
+  width: 52px; height: 52px; border-radius: 50%;
   background: var(--terra); color: #fff;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px;
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.15);
   transition: opacity 0.4s, transform 0.4s;
 }
@@ -119,14 +120,14 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 .envelope.open .env-letter { transform: translateY(-62%); z-index: 5; }
 
 .intro-hint {
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.55); font-weight: 300;
-  transition: opacity 0.4s;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); font-weight: 300;
+  transition: opacity 0.4s; text-align: center;
 }
 .envelope.open ~ .intro-hint { opacity: 0; }
 
-@media (max-width: 480px) {
-  .envelope { width: 86vw; }
+@media (max-width: 600px) {
+  .envelope { width: 94vw; height: 50vh; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -137,9 +138,9 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 /* ── NAV ── */
 #nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 0 48px;
-  height: 72px;
+  display: flex; justify-space-between: align-items: center;
+  padding: 0 32px;
+  height: 64px;
   transition: background 0.5s, box-shadow 0.5s;
 }
 #nav.scrolled {
@@ -149,23 +150,15 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--white);
-  letter-spacing: 1px;
-  transition: color 0.5s;
+  font-size: 22px; font-style: italic; font-weight: 400;
+  color: var(--white); letter-spacing: 1px; transition: color 0.5s;
 }
 #nav.scrolled .nav-logo { color: var(--dark); }
-.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links { display:flex; gap:24px; list-style:none; }
 .nav-links a {
-  font-size: 10px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: rgba(255,255,255,0.85);
-  transition: color 0.3s;
-  font-weight: 400;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; color: rgba(255,255,255,0.85);
+  transition: color 0.3s; font-weight: 400;
 }
 #nav.scrolled .nav-links a { color: var(--muted); }
 .nav-links a:hover { color: var(--gold2) !important; }
@@ -176,17 +169,15 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 /* ── HERO ── */
 #hero {
   position: relative;
-  height: 100vh; min-height: 600px;
+  height: 100vh; min-height: 550px;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
-  text-align: center;
-  overflow: hidden;
+  text-align: center; overflow: hidden;
 }
 .hero-bg {
   position: absolute; inset:0;
   background: url('https://images.ecestaticos.com/-r7TpUsITMSvmCT2jBGJ_OBUMIU=/0x0:2272x1515/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fcf1%2F02e%2Fd2f%2Fcf102ed2f582a5b953fbca7f031c6ce6.jpg') center/cover no-repeat;
-  transform: scale(1.05);
-  animation: heroZoom 14s ease-out forwards;
+  transform: scale(1.05); animation: heroZoom 14s ease-out forwards;
 }
 @keyframes heroZoom { to { transform: scale(1); } }
 .hero-overlay {
@@ -195,529 +186,251 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 }
 .hero-content {
   position: relative; z-index:2;
-  display: flex; flex-direction: column; align-items: center;
+  display: flex; flex-direction: column; align-items: center; padding: 0 20px;
   animation: fadeUp 1.4s 0.3s both;
 }
 @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
 .hero-eyebrow {
-  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-  color: var(--gold2); margin-bottom: 28px; font-weight: 400;
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold2); margin-bottom: 20px; font-weight: 400;
 }
 .hero-names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(62px, 10vw, 110px);
-  font-weight: 300; line-height: 0.95;
-  color: #fff; letter-spacing: -1px;
+  font-size: clamp(52px, 12vw, 100px);
+  font-weight: 300; line-height: 0.95; color: #fff; letter-spacing: -1px;
 }
 .hero-names em { font-style: italic; color: var(--gold2); }
-.hero-divider {
-  display: flex; align-items: center; gap: 20px; margin: 32px 0;
-}
-.hero-divider-line { width: 60px; height: 0.5px; background: var(--gold); }
-.hero-divider-diamond {
-  width: 7px; height: 7px;
-  background: var(--gold2);
-  transform: rotate(45deg);
-}
+.hero-divider { display: flex; align-items: center; gap: 16px; margin: 24px 0; }
+.hero-divider-line { width: 50px; height: 0.5px; background: var(--gold); }
+.hero-divider-diamond { width: 6px; height: 6px; background: var(--gold2); transform: rotate(45deg); }
 .hero-date {
-  font-size: 13px; letter-spacing: 5px; text-transform: uppercase;
-  color: rgba(255,255,255,0.8); font-weight: 300;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.85); font-weight: 300; text-align: center;
 }
 .hero-scroll {
-  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px;
-  color: rgba(255,255,255,0.5); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-  animation: fadeUp 1.4s 1.2s both;
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
 }
 .hero-scroll-line {
-  width: 1px; height: 48px; background: linear-gradient(to bottom, transparent, var(--gold));
+  width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--gold));
   animation: scrollLine 2s 2s infinite;
 }
 @keyframes scrollLine { 0%,100%{opacity:0.4;transform:scaleY(0.5) translateY(-10px)} 50%{opacity:1;transform:scaleY(1) translateY(0)} }
 
-/* ── SHARED SECTION STYLES ── */
+/* ── ESTILOS GENERALES ── */
 .section-label {
-  display: block;
-  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 18px; font-weight: 400;
+  display: block; font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px; font-weight: 400;
 }
 .section-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 300; line-height: 1.08;
-  margin-bottom: 24px;
+  font-size: clamp(32px, 6vw, 52px); font-weight: 300; line-height: 1.1; margin-bottom: 20px;
 }
 .section-body {
-  font-size: 15px; color: var(--muted);
-  line-height: 1.9; font-weight: 300;
-  max-width: 560px;
-}
-.ornament {
-  display: flex; align-items: center; gap: 16px;
-  margin: 48px auto;
-}
-.ornament-line { flex:1; height: 0.5px; background: var(--border); }
-.ornament-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; color: var(--gold); font-style: italic;
+  font-size: 15px; color: var(--muted); line-height: 1.8; font-weight: 300; max-width: 560px;
 }
 
-/* ── BIENVENIDA ── */
-#bienvenida {
-  display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 85vh;
-}
+/* ── BIENVENIDOS ── */
+#bienvenida { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
 .bienvenida-img {
   background: url('https://img.freepik.com/foto-gratis/mira-atras-sillas-blancas-pie-cesped-verde-antes-altar-boda_1304-3711.jpg') center/cover no-repeat;
-  position: relative;
-}
-.bienvenida-img::after {
-  content:''; position:absolute; inset:0;
-  background: linear-gradient(135deg, rgba(139,94,74,0.08) 0%, transparent 60%);
+  position: relative; min-height: 300px;
 }
 .bienvenida-text {
-  background: var(--cream);
-  display: flex; flex-direction: column;
-  justify-content: center;
-  padding: 80px 72px;
+  background: var(--cream); display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 48px;
 }
 .bienvenida-text blockquote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px; font-style: italic; font-weight: 300;
-  line-height: 1.5; color: var(--terra);
-  margin: 32px 0; border-left: 2px solid var(--gold2);
-  padding-left: 24px;
+  font-size: 24px; font-style: italic; font-weight: 300; line-height: 1.4; color: var(--terra);
+  margin: 20px 0 28px; border-left: 2px solid var(--gold2); padding-left: 18px;
 }
 
-/* ── CUENTA ATRÁS (integrada en Bienvenida) ── */
+/* ── CUENTA ATRÁS ── */
 .countdown-wrap {
-  display: flex; align-items: center; justify-content: flex-start;
-  gap: 0; max-width: 480px; margin: 48px 0 0;
-  border-top: 0.5px solid rgba(184,157,114,0.3);
-  padding-top: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 480px; margin: 40px 0 0;
+  border-top: 0.5px solid rgba(184,157,114,0.3); padding-top: 24px;
 }
 .cd-item {
-  flex: 1; padding: 0 16px;
-  border-right: 0.5px solid rgba(184,157,114,0.3);
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  flex: 1; padding: 0 8px; border-right: 0.5px solid rgba(184,157,114,0.3);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
 }
-.cd-item:first-child { padding-left: 0; }
 .cd-item:last-child { border-right: none; }
 .cd-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 4vw, 42px);
-  font-weight: 300; line-height: 1; color: var(--dark);
-  display: block;
-  transition: opacity 0.2s;
+  font-size: clamp(24px, 5vw, 38px); font-weight: 300; line-height: 1; color: var(--dark);
 }
-.cd-label {
-  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); font-weight: 400;
-}
+.cd-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
 
-/* ── EL DÍA ── */
-#eldia {
-  background: var(--cream2);
-  padding: 120px 80px;
-}
-.eldia-header {
-  margin-bottom: 80px;
-}
-.eldia-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 7vw, 88px);
-  font-weight: 300; line-height: 1.0;
-  color: var(--dark);
-}
-.eldia-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; max-width: 1100px;
-}
-.ev-number {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 13px; font-weight: 300; letter-spacing: 1px;
-  color: var(--muted); margin-bottom: 12px; display: block;
-}
-.ev-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(34px, 4vw, 48px);
-  font-weight: 300; line-height: 1.05;
-  color: var(--dark); margin-bottom: 20px;
-}
-.ev-desc {
-  font-size: 15px; color: var(--muted);
-  line-height: 1.85; margin-bottom: 32px; font-weight: 300;
-  max-width: 380px;
-}
-.ev-meta {
-  margin-bottom: 32px;
-}
-.ev-meta-row {
-  display: flex; align-items: baseline; gap: 10px;
-  padding: 14px 0;
-  border-bottom: 0.5px solid rgba(184,157,114,0.25);
-  font-size: 14px; color: var(--muted);
-}
+/* ── AGENDA ── */
+#eldia { background: var(--cream2); padding: 80px 32px; }
+.eldia-header { margin-bottom: 48px; }
+.eldia-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 8vw, 76px); font-weight: 300; line-height: 1; }
+.eldia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1100px; }
+.ev-number { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--muted); margin-bottom: 8px; display: block; }
+.ev-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 5vw, 44px); font-weight: 300; line-height: 1.1; margin-bottom: 16px; }
+.ev-desc { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+.ev-meta-row { display: flex; align-items: baseline; gap: 10px; padding: 12px 0; border-bottom: 0.5px solid rgba(184,157,114,0.25); font-size: 13px; color: var(--muted); }
 .ev-meta-row:first-child { border-top: 0.5px solid rgba(184,157,114,0.25); }
-.ev-meta-key {
-  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); min-width: 56px; font-weight: 400;
-}
-.ev-photo {
-  width: 100%; max-width: 380px; aspect-ratio: 4/3;
-  overflow: hidden; margin-bottom: 28px;
-}
+.ev-meta-key { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); min-width: 56px; font-weight: 400; }
+.ev-photo { width: 100%; aspect-ratio: 16/9; overflow: hidden; margin-bottom: 20px; border-radius: 2px; }
 .ev-photo img { width:100%; height:100%; object-fit:cover; display:block; }
 
-.info-toggle {
-  max-width: 380px;
-  border-top: 0.5px solid rgba(28,26,24,0.12);
-  margin-bottom: 4px;
-}
-.info-toggle summary {
-  cursor: pointer; list-style: none;
-  padding: 16px 0;
-  font-size: 12px; letter-spacing: 1px;
-  color: var(--dark); font-weight: 400;
-  display: flex; align-items: center; justify-content: space-between;
-}
+.info-toggle { border-top: 0.5px solid rgba(28,26,24,0.12); margin-bottom: 4px; }
+.info-toggle summary { cursor: pointer; list-style: none; padding: 14px 0; font-size: 12px; color: var(--dark); font-weight: 400; display: flex; align-items: center; justify-content: space-between; }
 .info-toggle summary::-webkit-details-marker { display:none; }
-.info-toggle summary::after {
-  content: '+'; color: var(--gold); font-size: 16px; margin-left: 12px; flex-shrink:0;
-}
+.info-toggle summary::after { content: '+'; color: var(--gold); font-size: 16px; margin-left: 8px; }
 .info-toggle[open] summary::after { content: '−'; }
-.info-toggle-body {
-  padding-bottom: 20px;
-  font-size: 13px; color: var(--muted); line-height: 1.8;
-}
-.info-toggle-body p { margin-bottom: 10px; }
-.info-toggle-body p:last-child { margin-bottom: 0; }
+.info-toggle-body { padding-bottom: 16px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+.info-toggle-body p { margin-bottom: 8px; }
 
-.ev-links { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
-.ev-link {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 0;
-  border-bottom: 0.5px solid rgba(28,26,24,0.12);
-  text-decoration: none; color: var(--dark);
-  font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
-  font-weight: 400; font-family: 'Jost', sans-serif;
-  transition: color 0.25s;
-}
+.ev-links { display: flex; flex-direction: column; margin-top: 12px; }
+.ev-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 0.5px solid rgba(28,26,24,0.12); text-decoration: none; color: var(--dark); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
 .ev-link:first-child { border-top: 0.5px solid rgba(28,26,24,0.12); }
 .ev-link:hover { color: var(--gold); }
-.ev-link-arrow {
-  font-size: 16px; transition: transform 0.25s;
-  font-family: serif;
-}
-.ev-link:hover .ev-link-arrow { transform: translateX(4px); }
 
-.btn-outline {
-  padding: 11px 24px;
-  border: 0.5px solid var(--gold);
-  color: var(--gold);
-  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-  text-decoration: none; font-weight: 400;
-  transition: all 0.3s; display:inline-block;
-  font-family: 'Jost', sans-serif;
-}
-.btn-outline:hover { background: var(--gold); color: #fff; }
-.btn-solid {
-  padding: 11px 28px;
-  background: var(--dark); color: #fff;
-  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-  text-decoration: none; font-weight: 400;
-  transition: all 0.3s; display:inline-block;
-  font-family: 'Jost', sans-serif; border: 0.5px solid var(--dark);
-}
-.btn-solid:hover { background: var(--gold); border-color: var(--gold); }
-
-/* ── CÓMO LLEGAR ── */
-#llegar { background: var(--cream2); }
-.llegar-inner {
-  display: grid; grid-template-columns: 1fr 1fr;
-}
-.llegar-map { min-height: 560px; position: relative; }
-.llegar-map iframe { position:absolute; inset:0; width:100%; height:100%; border:0; filter:sepia(20%) saturate(0.8); transition: filter 0.6s; }
-.llegar-map:hover iframe { filter: none; }
-.llegar-info { padding: 80px 64px; background: var(--cream2); }
-.transport-item { margin-bottom: 36px; }
-.transport-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 400; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 14px;
-  color: var(--dark);
-}
-.transport-body { font-size: 14px; color: var(--muted); line-height: 1.8; }
-.transport-divider { height: 0.5px; background: var(--border); margin: 28px 0; }
-
-/* ── ARANJUEZ ── */
-#aranjuez {
-  padding: 120px 48px;
-  text-align: center;
-  background: var(--white);
-}
-.estancia-info {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 56px; max-width: 1060px; margin: 56px auto 0; text-align: left;
-}
-.estancia-block-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400; margin-bottom: 14px; color: var(--dark);
-}
-.estancia-block-text {
-  font-size: 14px; color: var(--muted); line-height: 1.85;
-}
-.aranjuez-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 1060px; margin: 64px auto 0;
-}
-.lugar-card {
-  text-align: left; position: relative; overflow:hidden;
-  background: var(--cream);
-  transition: transform 0.4s;
-}
-.lugar-card:hover { transform: translateY(-6px); }
-.lugar-card-img {
-  height: 200px; overflow:hidden;
-}
-.lugar-card-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.6s; }
-.lugar-card:hover .lugar-card-img img { transform: scale(1.06); }
-.lugar-card-body { padding: 24px; }
-.lugar-card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 400; margin-bottom: 10px;
-}
-.lugar-card-text { font-size: 13px; color: var(--muted); line-height: 1.75; }
-
-/* ── COMPARTE TUS FOTOS ── */
-#fotos {
-  background: var(--cream);
-  padding: 120px 48px;
-  text-align: center;
-}
-#fotos .container { max-width: 640px; margin: 0 auto; }
-#fotos .section-label { text-align:center; }
-#fotos .section-title { text-align:center; }
-.section-subtitle {
-  font-size: 15px; color: var(--muted);
-  line-height: 1.9; font-weight: 300;
-  max-width: 560px; margin: 0 auto 48px;
-}
-.rsvp-card {
-  background: var(--white);
-  border: 0.5px solid var(--border);
-  padding: 48px 40px;
-  text-align: left;
-}
-#foto-form { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.form-group {
-  width: 100%; max-width: 380px;
-  display: flex; flex-direction: column; gap: 8px;
-  text-align: left;
-}
-.form-group label {
-  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gold); font-weight: 400;
-}
-.form-group input[type="text"],
-.form-group input[type="file"] {
-  width: 100%;
-  background: var(--cream);
-  border: 0.5px solid var(--border);
-  padding: 16px 18px;
-  font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300;
-  color: var(--dark);
-}
-#foto-form .rsvp-submit { max-width: 380px; background: var(--dark); }
-#foto-form .rsvp-submit:hover { background: var(--gold); }
-
-.fotos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  max-width: 1060px; margin: 64px auto 0;
-}
-.foto-item { overflow: hidden; aspect-ratio: 1/1; }
-.foto-item img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s; }
-.foto-item:hover img { transform: scale(1.06); }
+/* ── ESTANCIA / ARANJUEZ ── */
+#aranjuez { padding: 80px 24px; text-align: center; background: var(--white); }
+.estancia-info { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; max-width: 1060px; margin: 40px auto 0; text-align: left; }
+.estancia-block-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+.estancia-block-text { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.aranjuez-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1060px; margin: 48px auto 0; }
+.lugar-card { text-align: left; background: var(--cream); border-radius: 2px; overflow: hidden; }
+.lugar-card-img { height: 180px; overflow:hidden; }
+.lugar-card-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s; }
+.lugar-card:hover .lugar-card-img img { transform: scale(1.05); }
+.lugar-card-body { padding: 20px; }
+.lugar-card-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 8px; }
+.lugar-card-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
 /* ── FAQ ── */
-#faq { background: var(--cream); padding: 120px 48px; }
+#faq { background: var(--cream); padding: 80px 24px; }
 .faq-inner { max-width: 780px; margin: 0 auto; }
 .faq-item { border-bottom: 0.5px solid var(--border); }
-.faq-q {
-  width:100%; background:none; border:none; cursor:pointer;
-  padding: 28px 0;
-  display:flex; justify-content:space-between; align-items:center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400; text-align:left; color: var(--dark);
-}
-.faq-q:hover { color: var(--terra); }
-.faq-arrow {
-  font-size: 18px; color: var(--gold); flex-shrink:0;
-  transition: transform 0.35s;
-}
-.faq-a {
-  max-height: 0; overflow:hidden;
-  transition: max-height 0.4s ease, padding 0.3s;
-  font-size: 14px; color: var(--muted); line-height: 1.85;
-}
-.faq-a.open { max-height: 300px; padding-bottom: 28px; }
+.faq-q { width:100%; background:none; border:none; cursor:pointer; padding: 22px 0; display:flex; justify-content:space-between; align-items:center; font-family: 'Cormorant Garamond', serif; font-size: 20px; text-align:left; color: var(--dark); }
+.faq-arrow { font-size: 16px; color: var(--gold); transition: transform 0.3s; }
+.faq-a { max-height: 0; overflow:hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 14px; color: var(--muted); line-height: 1.8; }
+.faq-a.open { max-height: 400px; padding-bottom: 22px; }
 .faq-q.active .faq-arrow { transform: rotate(45deg); }
 
-/* ── RSVP ── */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
+/* ── RSVP (FORMULARIO CON CAJETINES CLAROS) ── */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 #rsvp {
   background: url('https://elregajal.es/wp-content/themes/yootheme/cache/10/foto-patio-montaje-evento-noche-1029127b.jpeg') center/cover no-repeat;
-  position: relative; padding: 140px 48px; text-align:center;
+  position: relative; padding: 100px 20px; text-align:center;
 }
-#rsvp::before {
-  content:''; position:absolute; inset:0;
-  background: rgba(20,17,14,0.72);
-}
-.rsvp-inner { position:relative; z-index:1; max-width:560px; margin:0 auto; }
+#rsvp::before { content:''; position:absolute; inset:0; background: rgba(15,13,11,0.82); }
+.rsvp-inner { position:relative; z-index:1; max-width:540px; margin:0 auto; }
 #rsvp .section-label { color: var(--gold2); }
 #rsvp .section-title { color:#fff; }
-#rsvp .section-body { color: rgba(255,255,255,0.65); margin:0 auto 48px; }
-.rsvp-form { display:flex; flex-direction:column; gap:0; }
-.rsvp-row { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+#rsvp .section-body { color: rgba(255,255,255,0.75); margin:0 auto 36px; }
+
+.rsvp-form { display:flex; flex-direction:column; gap:10px; }
+.rsvp-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .rsvp-field {
-  position:relative; background: rgba(253,252,250,0.94);
-  border-bottom: 0.5px solid rgba(255,255,255,0.2);
-  transition: border-color 0.3s, background 0.3s;
+  position:relative;
+  background: #fdfcfa; /* Fondo claro para legibilidad perfecta */
+  border: 1px solid var(--border);
+  border-radius: 3px;
 }
-.rsvp-field:focus-within { border-color: var(--gold2); background: #fff; }
 .rsvp-field input,
 .rsvp-field select,
 .rsvp-field textarea {
   width:100%; background:transparent; border:none; outline:none;
-  padding: 22px 20px;
-  font-family:'Jost',sans-serif; font-size:13px; font-weight:300;
-  color: var(--dark); letter-spacing:0.5px;
+  padding: 16px;
+  font-family:'Jost',sans-serif; font-size:14px; font-weight:400;
+  color: var(--dark); /* Texto oscuro totalmente visible */
 }
-.rsvp-field select option { background:#fdfcfa; color: var(--dark); }
+.rsvp-field select option { background:#ffffff; color: var(--dark); }
 .rsvp-field textarea { resize:none; }
 .rsvp-field input::placeholder,
-.rsvp-field textarea::placeholder { color: var(--muted); }
-.persona-block {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-  margin-top: 2px;
-}
-.persona-block-label {
-  grid-column: 1 / -1;
-  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--gold2); margin: 18px 0 2px; text-align: left;
-}
+.rsvp-field textarea::placeholder { color: #888888; }
+
+.persona-block { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+.persona-block-label { grid-column: 1 / -1; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin: 12px 0 2px; text-align: left; }
+
 .rsvp-submit {
-  margin-top:2px; padding:22px; width:100%;
-  background: var(--gold);
-  color:#fff; border:none; cursor:pointer;
-  font-family:'Jost',sans-serif; font-size:10px;
-  letter-spacing:3px; text-transform:uppercase; font-weight:400;
-  transition:background 0.3s;
+  margin-top:10px; padding:18px; width:100%;
+  background: var(--gold); color:#fff; border:none; cursor:pointer;
+  font-family:'Jost',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:500;
+  transition:background 0.3s; border-radius: 3px;
 }
 .rsvp-submit:hover { background: var(--gold2); }
-.rsvp-success {
-  display:none;
-  font-family:'Cormorant Garamond',serif;
-  font-size:32px; font-style:italic; font-weight:300;
-  color:var(--gold2); margin-top:32px; line-height:1.5;
+.rsvp-success { display:none; font-family:'Cormorant Garamond',serif; font-size:28px; font-style:italic; color:var(--gold2); margin-top:24px; line-height:1.4; }
+
+/* ── COMPARTE TUS FOTOS (ALINEADO Y CENTRADO) ── */
+#fotos { background: var(--cream); padding: 80px 20px; text-align: center; }
+#fotos .container { max-width: 580px; margin: 0 auto; }
+.section-subtitle { font-size: 14px; color: var(--muted); line-height: 1.8; font-weight: 300; margin: 0 auto 36px; }
+.rsvp-card { background: var(--white); border: 0.5px solid var(--border); padding: 36px 24px; border-radius: 3px; }
+#foto-form { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; }
+
+/* Alineación limpia de los cajetines de fotos */
+.form-group {
+  width: 100%; max-width: 400px;
+  display: flex; flex-direction: column; gap: 6px;
+  text-align: left;
 }
+.form-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 400; }
+.form-group input[type="text"],
+.form-group input[type="file"] {
+  width: 100%; background: var(--cream);
+  border: 1px solid var(--border); border-radius: 3px;
+  padding: 14px; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--dark);
+}
+#foto-form .rsvp-submit { max-width: 400px; background: var(--dark); margin-top: 6px; }
+#foto-form .rsvp-submit:hover { background: var(--gold); }
+
+.fotos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 1060px; margin: 48px auto 0; }
+.foto-item { overflow: hidden; aspect-ratio: 1/1; background: #eee; }
+.foto-item img, .foto-item video { width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ── FOOTER ── */
-footer {
-  background: var(--dark);
-  padding: 80px 48px 48px;
-  text-align:center;
-}
-.footer-names {
-  font-family:'Cormorant Garamond',serif;
-  font-size: 48px; font-style:italic; font-weight:300;
-  color: var(--gold2); margin-bottom:16px;
-}
-.footer-date {
-  font-size: 10px; letter-spacing:5px; text-transform:uppercase;
-  color: var(--muted); margin-bottom:40px;
-}
-.footer-msg {
-  font-family:'Cormorant Garamond',serif;
-  font-size:18px; font-style:italic; color:rgba(255,255,255,0.3);
-  max-width:400px; margin:0 auto 48px; line-height:1.7;
-}
-.footer-bottom {
-  font-size:10px; letter-spacing:2px; text-transform:uppercase;
-  color:rgba(255,255,255,0.15); border-top:0.5px solid rgba(255,255,255,0.07);
-  padding-top:28px;
-}
+footer { background: var(--dark); padding: 60px 20px 32px; text-align:center; }
+.footer-names { font-family:'Cormorant Garamond',serif; font-size: 40px; font-style:italic; color: var(--gold2); margin-bottom:12px; }
+.footer-date { font-size: 10px; letter-spacing:4px; text-transform:uppercase; color: var(--muted); margin-bottom:32px; }
+.footer-msg { font-family:'Cormorant Garamond',serif; font-size:16px; font-style:italic; color:rgba(255,255,255,0.4); max-width:360px; margin:0 auto 36px; line-height:1.6; }
+.footer-bottom { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); border-top:0.5px solid rgba(255,255,255,0.07); padding-top:20px; }
 
-/* ── FADE-IN ANIMATION ── */
-.reveal {
-  opacity:0; transform:translateY(32px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.visible { opacity:1; transform:none; }
 
-/* ── MOBILE MENU ── */
+/* ── MENÚ MÓVIL ── */
 #mobile-menu {
-  display:none; position:fixed; inset:0; z-index:998;
-  background: rgba(28,26,24,0.97);
-  flex-direction:column; justify-content:center; align-items:center; gap:32px;
+  display:none; position:fixed; inset:0; z-index:2000;
+  background: rgba(20,17,14,0.98);
+  flex-direction:column; justify-content:center; align-items:center; gap:24px; padding: 20px;
 }
 #mobile-menu a {
-  font-family:'Cormorant Garamond',serif;
-  font-size:36px; font-style:italic; color:#fff; text-decoration:none;
-  letter-spacing:1px; opacity:0.8; transition:opacity 0.2s;
+  font-family:'Cormorant Garamond',serif; font-size:28px; font-style:italic; color:#fff; text-decoration:none;
+  letter-spacing:1px; opacity:0.85; transition:opacity 0.2s; text-align: center;
 }
 #mobile-menu a:hover { opacity:1; color:var(--gold2); }
-#mobile-menu .close-btn {
-  position:absolute; top:28px; right:32px;
-  background:none; border:none; cursor:pointer;
-  font-size:28px; color:rgba(255,255,255,0.5);
-}
+#mobile-menu .close-btn { position:absolute; top:20px; right:24px; background:none; border:none; cursor:pointer; font-size:28px; color:rgba(255,255,255,0.6); }
 
-/* ── RESPONSIVE ── */
+/* ── ADAPTACIÓN TOTAL A MÓVIL (MOBILE FIRST ORIENTED) ── */
 @media(max-width:900px) {
   #bienvenida { grid-template-columns:1fr; }
-  .bienvenida-img { height:55vw; }
-  .bienvenida-text { padding:60px 40px; }
-  .eldia-grid { grid-template-columns:1fr; gap:56px; }
-  #eldia { padding:80px 32px; }
-  .countdown-wrap { flex-wrap:wrap; }
-  .cd-item { flex: 0 0 45%; border-right:none; border-bottom: 0.5px solid rgba(184,157,114,0.3); }
-  .llegar-inner { grid-template-columns:1fr; }
-  .llegar-map { min-height:320px; }
-  .llegar-info { padding:60px 40px; }
+  .bienvenida-img { height: 45vh; min-height:250px; }
+  .bienvenida-text { padding:48px 24px; }
+  .eldia-grid { grid-template-columns:1fr; gap:40px; }
+  #eldia { padding:60px 20px; }
+  .estancia-info { grid-template-columns:1fr; gap:28px; }
   .aranjuez-grid { grid-template-columns:1fr 1fr; }
-  .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
-  .gallery-cell { grid-column:auto!important; grid-row:auto!important; height:200px; }
   .rsvp-row { grid-template-columns:1fr; }
   .persona-block { grid-template-columns:1fr; }
-  .estancia-info { grid-template-columns:1fr; gap:40px; }
-  .countdown-wrap { max-width:100%; }
   .fotos-grid { grid-template-columns:1fr 1fr; }
   .nav-links { display:none; }
   .nav-burger { display:flex; }
-  #nav { padding:0 24px; }
+  #nav { padding:0 20px; }
 }
+
 @media(max-width:600px) {
   .aranjuez-grid { grid-template-columns:1fr; }
-  .bienvenida-text { padding:48px 28px; }
-  .event-card { padding:40px 28px; }
-  #eldia, #aranjuez, #fotos, #faq { padding:80px 24px; }
-  .rsvp-card { padding:32px 24px; }
-  #rsvp { padding:100px 24px; }
-  footer { padding:60px 24px 40px; }
-  .llegar-info { padding:48px 28px; }
+  .fotos-grid { grid-template-columns:1fr 1fr; }
+  #eldia, #aranjuez, #fotos, #faq { padding:60px 16px; }
+  .rsvp-card { padding:24px 16px; }
+  #rsvp { padding:80px 16px; }
 }
