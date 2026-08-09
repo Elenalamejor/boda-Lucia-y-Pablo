@@ -1,6 +1,35 @@
 /* ── URL DE GOOGLE APPS SCRIPT ── */
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzN_7pHY4urRuXLO8f4GFRk5I-qQw495Ux2E4ulGcsUPRoB9a9OpWyZU_PwlKvhi6wXNg/exec';
 
+/* ── SOBRE DE BIENVENIDA ── */
+(function () {
+  const overlay  = document.getElementById('intro-overlay');
+  const envelope = document.getElementById('envelope');
+  if (!overlay || !envelope) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.body.classList.add('intro-locked');
+
+  function openEnvelope() {
+    if (envelope.classList.contains('open')) return;
+    envelope.classList.add('open');
+    const delay = reduceMotion ? 200 : 1500;
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      document.body.classList.remove('intro-locked');
+    }, delay);
+  }
+
+  envelope.addEventListener('click', openEnvelope);
+  envelope.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openEnvelope();
+    }
+  });
+})();
+
 /* ── NAV: añade clase 'scrolled' al hacer scroll ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -43,54 +72,107 @@ function toggleFaq(btn) {
 }
 
 /* ── RSVP ── */
-const asistenciaInput = document.getElementById('r-asistencia');
-const personasInput   = document.getElementById('r-personas');
-const menuInput       = document.getElementById('r-menu');
+const asistenciaInput   = document.getElementById('r-asistencia');
+const personasInput     = document.getElementById('r-personas');
+const alojamientoInput  = document.getElementById('r-alojamiento');
+const personasDetalle   = document.getElementById('personas-detalle');
 
-asistenciaInput.addEventListener('change', function () {
-  const valor = this.value;
-  if (valor === 'no') {
-    personasInput.disabled = true;
-    menuInput.disabled = true;
-    personasInput.value = '';
-    menuInput.selectedIndex = 0;
-  } else {
-    personasInput.disabled = false;
-    menuInput.disabled = false;
+const MENU_OPTIONS = [
+  ['sin-restricciones', 'Sin restricciones'],
+  ['vegetariano', 'Vegetariano'],
+  ['vegano', 'Vegano'],
+  ['sin-gluten', 'Sin gluten (celíaco)'],
+  ['sin-lactosa', 'Sin lactosa'],
+  ['sin-mariscos', 'Sin mariscos'],
+  ['sin-frutos-secos', 'Sin frutos secos'],
+  ['infantil', 'Menú infantil'],
+  ['otro', 'Otro (indicar en notas)']
+];
+
+function menuOptionsHTML() {
+  return MENU_OPTIONS.map(([v, label]) => `<option value="${v}">${label}</option>`).join('');
+}
+
+// Genera los campos de nombre/menú según el nº de personas
+function renderPersonasDetalle() {
+  const n = parseInt(personasInput.value);
+  personasDetalle.innerHTML = '';
+  if (isNaN(n) || n < 1) return;
+
+  let html = '';
+  for (let i = 1; i <= n; i++) {
+    html += `<div class="persona-block-label">${i === 1 ? 'Tu menú' : 'Acompañante ' + (i - 1)}</div>`;
+    html += '<div class="persona-block">';
+    if (i > 1) {
+      html += `
+        <div class="rsvp-field">
+          <label for="p-nombre-${i}" class="sr-only">Nombre del acompañante</label>
+          <input type="text" id="p-nombre-${i}" placeholder="Nombre completo del acompañante" autocomplete="off">
+        </div>`;
+    }
+    html += `
+        <div class="rsvp-field">
+          <label for="p-menu-${i}" class="sr-only">Menú especial</label>
+          <select id="p-menu-${i}">
+            <option value="" disabled selected>Menú especial</option>
+            ${menuOptionsHTML()}
+          </select>
+        </div>`;
+    html += '</div>';
   }
-});
+  personasDetalle.innerHTML = html;
+}
 
-personasInput.addEventListener('input', function () {
-  const valor = parseInt(this.value);
-  if (isNaN(valor)) return;
-  if (valor < 1) this.value = 1;
-  if (valor > 2) this.value = 2;
-});
+function toggleAsistenciaFields() {
+  const valor = asistenciaInput.value;
+  const asiste = valor === 'preboda' || valor === 'boda' || valor === 'ambas';
+
+  personasInput.disabled = !asiste;
+  alojamientoInput.disabled = !asiste;
+
+  if (!asiste) {
+    personasInput.value = '';
+    alojamientoInput.selectedIndex = 0;
+    personasDetalle.innerHTML = '';
+  }
+}
+
+asistenciaInput.addEventListener('change', toggleAsistenciaFields);
+personasInput.addEventListener('change', renderPersonasDetalle);
 
 // Envío del formulario RSVP a Google Sheets
 function submitRSVP() {
-  const nombre     = document.getElementById('r-nombre').value.trim();
-  const email      = document.getElementById('r-email').value.trim();
-  const asistencia = document.getElementById('r-asistencia').value;
-  const personas   = document.getElementById('r-personas').value;
-  const menu       = document.getElementById('r-menu').value.trim();
-  const notas      = document.getElementById('r-notas').value.trim();
+  const nombre      = document.getElementById('r-nombre').value.trim();
+  const asistencia  = document.getElementById('r-asistencia').value;
+  const personas    = document.getElementById('r-personas').value;
+  const alojamiento = document.getElementById('r-alojamiento').value;
+  const notas       = document.getElementById('r-notas').value.trim();
 
-  // Validación estricta: sólo permite 'si' o 'no'
-  if (asistencia !== 'si' && asistencia !== 'no') {
-    alert('Por favor, selecciona si asistirás o no.');
+  if (!asistencia) {
+    alert('Por favor, indícanos a qué asistirás.');
     return;
   }
 
-  if (asistencia === 'no') {
-    if (!nombre || !email) {
-      alert('Por favor, rellena nombre y email.');
+  const asiste = asistencia === 'preboda' || asistencia === 'boda' || asistencia === 'ambas';
+
+  if (!asiste) {
+    if (!nombre) {
+      alert('Por favor, rellena tu nombre.');
       return;
     }
-  } else {
-    if (!nombre || !email || !personas || !menu) {
-      alert('Por favor, rellena todos los campos obligatorios.');
-      return;
+  } else if (!nombre || !personas) {
+    alert('Por favor, rellena todos los campos obligatorios.');
+    return;
+  }
+
+  // Recoge nombre y menú de cada persona
+  const personasData = [];
+  if (asiste) {
+    const n = parseInt(personas) || 0;
+    for (let i = 1; i <= n; i++) {
+      const nombreP = i === 1 ? nombre : (document.getElementById(`p-nombre-${i}`)?.value.trim() || '');
+      const menuP   = document.getElementById(`p-menu-${i}`)?.value || '';
+      personasData.push({ nombre: nombreP, menu: menuP });
     }
   }
 
@@ -99,7 +181,7 @@ function submitRSVP() {
   submitBtn.disabled = true;
   submitBtn.innerText = 'ENVIANDO...';
 
-  const payload = { nombre, email, asistencia, personas, menu, notas };
+  const payload = { nombre, asistencia, personas, alojamiento, personasData, notas };
 
   fetch(SCRIPT_URL, {
     method: 'POST',
@@ -117,7 +199,7 @@ function submitRSVP() {
     submitBtn.disabled = false;
     submitBtn.innerText = originalText;
   });
-} // <--- SE AÑADIÓ LA LLAVE DE CIERRE FALTANTE AQUÍ
+}
 
 /* ── CARGAR FOTOS EN LA GALERÍA ── */
 function cargarGalería() {
