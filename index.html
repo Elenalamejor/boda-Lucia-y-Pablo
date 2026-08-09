@@ -29,15 +29,39 @@
       <link rel="stylesheet" href="styles.css" />
    </head>
    <body>
+      <!-- SOBRE DE BIENVENIDA -->
+      <div id="intro-overlay">
+         <div
+            class="envelope"
+            id="envelope"
+            role="button"
+            tabindex="0"
+            aria-label="Abrir la invitación"
+         >
+            <div class="env-back"></div>
+            <div class="env-letter">
+               <div class="env-letter-content">
+                  <span class="env-letter-eyebrow">Os invitamos a la boda de</span>
+                  <span class="env-letter-names">Lucía <em>&</em> Pablo</span>
+                  <span class="env-letter-date">24 · 04 · 2027</span>
+               </div>
+            </div>
+            <div class="env-pocket"></div>
+            <div class="env-flap"></div>
+            <div class="env-seal">L&nbsp;&amp;&nbsp;P</div>
+         </div>
+         <p class="intro-hint" id="intro-hint">Toca el sobre para abrir la invitación</p>
+      </div>
+
       <!-- MENÚ MÓVIL -->
       <div id="mobile-menu">
          <button class="close-btn" onclick="closeMobileMenu()">✕</button>
          <a href="#bienvenida" onclick="closeMobileMenu()">Nosotros</a>
          <a href="#eldia" onclick="closeMobileMenu()">El día</a>
-         <a href="#llegar" onclick="closeMobileMenu()">Cómo llegar</a>
          <a href="#aranjuez" onclick="closeMobileMenu()">Aranjuez</a>
-         <a href="#galeria" onclick="closeMobileMenu()">El sitio</a>
+         <a href="#faq" onclick="closeMobileMenu()">Información</a>
          <a href="#rsvp" onclick="closeMobileMenu()">Confirmar</a>
+         <a href="#fotos" onclick="closeMobileMenu()">Fotos</a>
       </div>
 
       <!-- NAV -->
@@ -46,10 +70,10 @@
          <ul class="nav-links">
             <li><a href="#bienvenida">Nosotros</a></li>
             <li><a href="#eldia">El día</a></li>
-            <li><a href="#llegar">Cómo llegar</a></li>
             <li><a href="#aranjuez">Aranjuez</a></li>
-            <li><a href="#galeria">El sitio</a></li>
+            <li><a href="#faq">Información</a></li>
             <li><a href="#rsvp">Confirmar asistencia</a></li>
+            <li><a href="#fotos">Comparte tus fotos</a></li>
          </ul>
          <div class="nav-burger" onclick="openMobileMenu()">
             <span></span><span></span><span></span>
@@ -83,47 +107,48 @@
          <div class="bienvenida-text">
             <div class="reveal">
                <span class="section-label">Bienvenidos</span>
-               <h2 class="section-title">
-                  Queremos<br />compartirlo<br />con vosotros
-               </h2>
                <blockquote>
                   "El amor no se mira, el amor se comparte."
                </blockquote>
+               <h2 class="section-title">
+                  Queremos<br />compartirlo<br />con vosotros
+               </h2>
                <p class="section-body">
-                  Después de años de aventuras juntos, hemos decidido dar el
-                  paso más bonito de nuestras vidas. Nos encantaría que
-                  estuvieras con nosotros ese día en El Regajal, rodeados de
-                  naturaleza, viñedos y las personas que más queremos.
+                  Nos conocimos en la universidad y, casi sin darnos cuenta,
+                  empezamos a construir una vida juntos. Desde entonces han
+                  pasado 8 años en los que hemos aprendido a construir un
+                  hogar, comenzado nuestra vida laboral y compartido
+                  innumerables viajes, planes y proyectos de vida que no
+                  paran de crecer. Y por el camino llegó Turrón, nuestro
+                  compañero de cuatro patas, sin el que ya no imaginamos
+                  nuestra familia.
                   <br /><br />
-                  Será un día lleno de emoción, buena gastronomía, vinos de la
-                  propia finca y, sobre todo, mucho amor.
+                  Ahora queremos dar un paso más y celebrar con vosotros en
+                  la Bodega El Regajal todo lo que hemos vivido y lo que
+                  está por venir. Un lugar ideal para nosotros rodeado de
+                  naturaleza, buena gastronomía y, sobre todo, de las
+                  personas que más queremos.
                </p>
             </div>
-         </div>
-      </section>
 
-      <!-- CUENTA ATRÁS -->
-      <section id="countdown">
-         <div class="reveal">
-            <span class="section-label">Faltan</span>
-            <h2 class="section-title">Cuenta atrás</h2>
-         </div>
-         <div class="countdown-wrap reveal">
-            <div class="cd-item">
-               <span class="cd-num" id="cd-dias">—</span>
-               <span class="cd-label">Días</span>
-            </div>
-            <div class="cd-item">
-               <span class="cd-num" id="cd-horas">—</span>
-               <span class="cd-label">Horas</span>
-            </div>
-            <div class="cd-item">
-               <span class="cd-num" id="cd-min">—</span>
-               <span class="cd-label">Minutos</span>
-            </div>
-            <div class="cd-item">
-               <span class="cd-num" id="cd-seg">—</span>
-               <span class="cd-label">Segundos</span>
+            <!-- CUENTA ATRÁS -->
+            <div class="countdown-wrap reveal" id="countdown">
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-dias">—</span>
+                  <span class="cd-label">Días</span>
+               </div>
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-horas">—</span>
+                  <span class="cd-label">Horas</span>
+               </div>
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-min">—</span>
+                  <span class="cd-label">Minutos</span>
+               </div>
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-seg">—</span>
+                  <span class="cd-label">Segundos</span>
+               </div>
             </div>
          </div>
       </section>
@@ -132,17 +157,23 @@
       <section id="eldia">
          <div class="eldia-header reveal">
             <span class="section-label">Agenda</span>
-            <h2 class="eldia-title">Viaje<br />y estancia</h2>
+            <h2 class="eldia-title">Un fin de<br />semana juntos</h2>
          </div>
 
          <div class="eldia-grid">
             <!-- Preboda -->
             <div class="reveal">
                <span class="ev-number">01.</span>
+               <!-- TODO: añadir aquí una foto bonita de Casa Triviño Eventos -->
                <h3 class="ev-title">La noche<br />antes</h3>
                <p class="ev-desc">
-                  Una cena íntima para que los más cercanos os reunáis la noche
-                  anterior. Venid relajados y con ganas de disfrutar.
+                  Empezamos a celebrar la noche antes con un picoteo informal
+                  donde reunirnos todos los que, desde diferentes ámbitos,
+                  formáis parte de nuestra historia. Una ocasión para
+                  compartir un rato juntos, conocernos en un ambiente
+                  relajado y disfrutar de los primeros momentos de este fin
+                  de semana tan especial. Eso sí, guardad energía… ¡al día
+                  siguiente toca darlo todo!
                </p>
                <div class="ev-meta">
                   <div class="ev-meta-row">
@@ -151,24 +182,77 @@
                   </div>
                   <div class="ev-meta-row">
                      <span class="ev-meta-key">Dónde</span>
-                     <span>Casa Triviño, Aranjuez</span>
+                     <span>Casa Triviño Eventos, Aranjuez</span>
                   </div>
                </div>
+
+               <details class="info-toggle">
+                  <summary>Dress code recomendado: Smart Casual</summary>
+                  <div class="info-toggle-body">
+                     <p>
+                        Queremos veros guapos y cómodos para disfrutar juntos
+                        de una tarde-noche de primavera. Siempre que el
+                        tiempo acompañe, disfrutaremos de la terraza y el
+                        jardín, así que os recomendamos traer alguna prenda
+                        de abrigo, la temperatura puede refrescar al caer la
+                        noche.
+                     </p>
+                     <p><strong>Ellas:</strong> vestido o conjunto chic, chaqueta ligera y zapatos arreglados, pero no necesariamente formales.</p>
+                     <p><strong>Ellos:</strong> pantalón chino o de vestir, camisa o polo elegante, jersey fino o chaqueta ligera (americana opcional) y zapatos arreglados, pero no necesariamente formales.</p>
+                  </div>
+               </details>
+
+               <details class="info-toggle">
+                  <summary>Parking gratuito en la calle</summary>
+                  <div class="info-toggle-body">
+                     <p>
+                        Recomendamos venir en grupo para reducir el número de
+                        vehículos. Aunque hay espacio suficiente de
+                        aparcamiento a lo largo de la calle, así evitamos que
+                        tengáis que caminar demasiado para llegar al lugar.
+                     </p>
+                  </div>
+               </details>
+
                <div class="ev-links">
                   <a
                      class="ev-link"
-                     href="https://www.google.com/maps/search/Casa+Triviño+Aranjuez"
+                     href="https://maps.app.goo.gl/rEZZsLxuCs4rCkhB8"
                      target="_blank"
                   >
-                     Mapa y detalles
+                     Cómo llegar en coche · Google Maps
                      <span class="ev-link-arrow">→</span>
                   </a>
                   <a
                      class="ev-link"
-                     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Preboda+Luc%C3%ADa+%26+Pablo&dates=20270423T180000Z/20270423T220000Z&details=Casa+Triviño,+Aranjuez&location=Casa+Triviño,+Aranjuez"
+                     href="https://maps.apple.com/?q=Casa+Trivi%C3%B1o+Eventos,+Aranjuez"
                      target="_blank"
                   >
-                     Añadir al calendario
+                     Cómo llegar en coche · Apple Maps
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="https://www.casatrivinoeventos.com"
+                     target="_blank"
+                  >
+                     Web de Casa Triviño Eventos
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Preboda+Luc%C3%ADa+%26+Pablo&dates=20270423T180000Z/20270423T220000Z&details=Casa+Trivi%C3%B1o+Eventos,+Aranjuez&location=Casa+Trivi%C3%B1o+Eventos,+Aranjuez"
+                     target="_blank"
+                  >
+                     Añadir a Google Calendar
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20270423T180000Z%0ADTEND:20270423T220000Z%0ASUMMARY:Preboda%20Luc%C3%ADa%20%26%20Pablo%0ALOCATION:Casa%20Trivi%C3%B1o%20Eventos%2C%20Aranjuez%0AEND:VEVENT%0AEND:VCALENDAR"
+                     download="preboda-lucia-pablo.ics"
+                  >
+                     Añadir a Apple Calendar
                      <span class="ev-link-arrow">→</span>
                   </a>
                </div>
@@ -177,16 +261,26 @@
             <!-- Boda -->
             <div class="reveal">
                <span class="ev-number">02.</span>
+               <div class="ev-photo">
+                  <img
+                     src="https://elregajal.es/wp-content/themes/yootheme/cache/1c/05.06.2019-20-1c19d306.jpeg"
+                     alt="Salón de bodas El Regajal"
+                     loading="lazy"
+                  />
+               </div>
                <h3 class="ev-title">El gran<br />día</h3>
                <p class="ev-desc">
-                  Ceremonia, aperitivo entre los viñedos y banquete con los
-                  vinos de la propia bodega. Una tarde y noche que no
-                  olvidaréis.
+                  Llega el gran día que con tanta ilusión hemos estado
+                  preparando. Ceremonia junto a los viñedos, cóctel en los
+                  jardines, banquete acompañado con los vinos de la propia
+                  bodega y una fiesta para celebrarlo como se merece. Será
+                  un día muy especial que esperamos compartir con todos
+                  vosotros y que, juntos, hagamos inolvidable.
                </p>
                <div class="ev-meta">
                   <div class="ev-meta-row">
                      <span class="ev-meta-key">Cuándo</span>
-                     <span>Sábado, 24 de abril de 2027 · 13:00 h</span>
+                     <span>Sábado, 24 de abril de 2027 · 13:00 h<br /><em style="font-style:italic;opacity:0.8">Os pedimos llegar 15 minutos antes, la ceremonia comienza a las 12:45 h</em></span>
                   </div>
                   <div class="ev-meta-row">
                      <span class="ev-meta-key">Dónde</span>
@@ -197,13 +291,36 @@
                      <span>Gratuito en la finca</span>
                   </div>
                </div>
+
+               <details class="info-toggle">
+                  <summary>Dress code recomendado: Elegancia de día</summary>
+                  <div class="info-toggle-body">
+                     <p>
+                        Os animamos a elegir un look elegante y sofisticado,
+                        pensado para una celebración de día y en armonía con
+                        este día tan especial. Evitad el blanco y el negro
+                        riguroso. ¡Queremos una boda bonita y alegre!
+                     </p>
+                     <p><strong>Ellas:</strong> vestido midi o conjunto elegante, acompañado de bolso pequeño y zapatos de salón o fiesta. Tocado o pamela, opcional.</p>
+                     <p><strong>Ellos:</strong> traje, tanto en tonos oscuros como claros, acompañado de camisa, corbata y zapatos de vestir.</p>
+                  </div>
+               </details>
+
                <div class="ev-links">
                   <a
                      class="ev-link"
-                     href="https://www.google.com/maps/place/Finca+el+Regajal/@40.0055278,-3.6063467,15z"
+                     href="https://maps.app.goo.gl/gKK39LXkAkDCPLd69"
                      target="_blank"
                   >
-                     Mapa y detalles
+                     Cómo llegar en coche · Google Maps
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="https://maps.apple.com/?q=Finca+El+Regajal,+Aranjuez"
+                     target="_blank"
+                  >
+                     Cómo llegar en coche · Apple Maps
                      <span class="ev-link-arrow">→</span>
                   </a>
                   <a
@@ -211,160 +328,69 @@
                      href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Luc%C3%ADa+%26+Pablo&dates=20270424T110000Z/20270425T000000Z&details=Finca+El+Regajal,+Aranjuez&location=Finca+El+Regajal,+Antigua+Ctra+Andaluc%C3%ADa+km+50.5,+Aranjuez"
                      target="_blank"
                   >
-                     Añadir al calendario
+                     Añadir a Google Calendar
                      <span class="ev-link-arrow">→</span>
                   </a>
-                  <a class="ev-link" href="#llegar">
-                     Las recomendaciones
-                     <span class="ev-link-arrow">→</span>
-                  </a>
-               </div>
-            </div>
-         </div>
-      </section>
-
-      <!-- 4. CÓMO LLEGAR -->
-      <section id="llegar">
-         <div class="llegar-inner">
-            <div class="llegar-map">
-               <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12224.50285906663!2d-3.6063467!3d40.0055278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd420364f336592f%3A0xe2149b56f8f17664!2sFinca%20el%20Regajal!5e0!3m2!1ses!2ses!4v1700000000000"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-               >
-               </iframe>
-            </div>
-            <div class="llegar-info reveal">
-               <span class="section-label">Cómo llegar</span>
-               <h2 class="section-title">Llegar a<br />El Regajal</h2>
-
-               <div class="transport-item">
-                  <div class="transport-title">
-                     <svg
-                        width="5%"
-                        height="5%"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path
-                           d="M5 13H8M2 9L4 10L5.27064 6.18807C5.53292 5.40125 5.66405 5.00784 5.90729 4.71698C6.12208 4.46013 6.39792 4.26132 6.70951 4.13878C7.06236 4 7.47705 4 8.30643 4H15.6936C16.523 4 16.9376 4 17.2905 4.13878C17.6021 4.26132 17.8779 4.46013 18.0927 4.71698C18.3359 5.00784 18.4671 5.40125 18.7294 6.18807L20 10L22 9M16 13H19M6.8 10H17.2C18.8802 10 19.7202 10 20.362 10.327C20.9265 10.6146 21.3854 11.0735 21.673 11.638C22 12.2798 22 13.1198 22 14.8V17.5C22 17.9647 22 18.197 21.9616 18.3902C21.8038 19.1836 21.1836 19.8038 20.3902 19.9616C20.197 20 19.9647 20 19.5 20H19C17.8954 20 17 19.1046 17 18C17 17.7239 16.7761 17.5 16.5 17.5H7.5C7.22386 17.5 7 17.7239 7 18C7 19.1046 6.10457 20 5 20H4.5C4.03534 20 3.80302 20 3.60982 19.9616C2.81644 19.8038 2.19624 19.1836 2.03843 18.3902C2 18.197 2 17.9647 2 17.5V14.8C2 13.1198 2 12.2798 2.32698 11.638C2.6146 11.0735 3.07354 10.6146 3.63803 10.327C4.27976 10 5.11984 10 6.8 10Z"
-                           stroke="currentColor"
-                           stroke-width="1.5"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                           style="color: var(--gold); flex-shrink: 0"
-                        />
-                     </svg>
-                     En coche
-                  </div>
-                  <p class="transport-body">
-                     Desde Madrid por la <strong>A-4</strong> dirección Córdoba,
-                     salida Aranjuez. Luego <strong>M-305</strong> hasta km
-                     50.5. Parking gratuito en la finca.
-                  </p>
-               </div>
-               <div class="transport-divider"></div>
-
-               <div class="transport-item">
-                  <div class="transport-title">
-                     <svg
-                        width="5%"
-                        height="5%"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path
-                           d="M9.5 22H14.5M8 2H16M12 5V2M4 12H20M17 19L18.5 22M7 19L5.5 22M8.5 15.5H8.51M15.5 15.5H15.51M8.8 19H15.2C16.8802 19 17.7202 19 18.362 18.673C18.9265 18.3854 19.3854 17.9265 19.673 17.362C20 16.7202 20 15.8802 20 14.2V9.8C20 8.11984 20 7.27976 19.673 6.63803C19.3854 6.07354 18.9265 5.6146 18.362 5.32698C17.7202 5 16.8802 5 15.2 5H8.8C7.11984 5 6.27976 5 5.63803 5.32698C5.07354 5.6146 4.6146 6.07354 4.32698 6.63803C4 7.27976 4 8.11984 4 9.8V14.2C4 15.8802 4 16.7202 4.32698 17.362C4.6146 17.9265 5.07354 18.3854 5.63803 18.673C6.27976 19 7.11984 19 8.8 19ZM9 15.5C9 15.7761 8.77614 16 8.5 16C8.22386 16 8 15.7761 8 15.5C8 15.2239 8.22386 15 8.5 15C8.77614 15 9 15.2239 9 15.5ZM16 15.5C16 15.7761 15.7761 16 15.5 16C15.2239 16 15 15.7761 15 15.5C15 15.2239 15.2239 15 15.5 15C15.7761 15 16 15.2239 16 15.5Z"
-                           stroke="currentColor"
-                           stroke-width="1.5"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                           style="color: var(--gold); flex-shrink: 0"
-                        />
-                     </svg>
-                     En tren
-                  </div>
-                  <p class="transport-body">
-                     Cercanías <strong>C3</strong> desde Atocha hasta Aranjuez
-                     (≈ 45 min). Desde la estación, taxi o VTC hasta la finca (≈
-                     10 min).
-                  </p>
-               </div>
-               <div class="transport-divider"></div>
-
-               <div class="transport-item">
-                  <div class="transport-title">
-                     <svg
-                        width="4.7%"
-                        height="4.7%"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path
-                           d="M8.5 19V21.2C8.5 21.48 8.5 21.62 8.4455 21.727C8.39757 21.8211 8.32108 21.8976 8.227 21.9455C8.12004 22 7.98003 22 7.7 22H5.8C5.51997 22 5.37996 22 5.273 21.9455C5.17892 21.8976 5.10243 21.8211 5.0545 21.727C5 21.62 5 21.48 5 21.2V19M19 19V21.2C19 21.48 19 21.62 18.9455 21.727C18.8976 21.8211 18.8211 21.8976 18.727 21.9455C18.62 22 18.48 22 18.2 22H16.3C16.02 22 15.88 22 15.773 21.9455C15.6789 21.8976 15.6024 21.8211 15.5545 21.727C15.5 21.62 15.5 21.48 15.5 21.2V19M3 12H21M3 5.5H21M6.5 15.5H8M16 15.5H17.5M7.8 19H16.2C17.8802 19 18.7202 19 19.362 18.673C19.9265 18.3854 20.3854 17.9265 20.673 17.362C21 16.7202 21 15.8802 21 14.2V6.8C21 5.11984 21 4.27976 20.673 3.63803C20.3854 3.07354 19.9265 2.6146 19.362 2.32698C18.7202 2 17.8802 2 16.2 2H7.8C6.11984 2 5.27976 2 4.63803 2.32698C4.07354 2.6146 3.6146 3.07354 3.32698 3.63803C3 4.27976 3 5.11984 3 6.8V14.2C3 15.8802 3 16.7202 3.32698 17.362C3.6146 17.9265 4.07354 18.3854 4.63803 18.673C5.27976 19 6.11984 19 7.8 19Z"
-                           stroke="currentColor"
-                           stroke-width="1.5"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                           style="color: var(--gold); flex-shrink: 0"
-                        />
-                     </svg>
-                     En bus
-                  </div>
-                  <p class="transport-body">
-                     <strong>SAMAR</strong> desde Estación Sur de Madrid (Méndez
-                     Álvaro) con parada en Aranjuez. Frecuencia cada hora
-                     aproximadamente.
-                  </p>
-               </div>
-               <div class="transport-divider"></div>
-
-               <div class="transport-item">
-                  <div class="transport-title">
-                     <svg
-                        width="5%"
-                        height="5%"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path
-                           d="M8.12602 14C8.57006 15.7252 10.1362 17 12 17C13.8638 17 15.4299 15.7252 15.874 14M11.0177 2.764L4.23539 8.03912C3.78202 8.39175 3.55534 8.56806 3.39203 8.78886C3.24737 8.98444 3.1396 9.20478 3.07403 9.43905C3 9.70352 3 9.9907 3 10.5651V17.8C3 18.9201 3 19.4801 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4801 21 18.9201 21 17.8V10.5651C21 9.9907 21 9.70352 20.926 9.43905C20.8604 9.20478 20.7526 8.98444 20.608 8.78886C20.4447 8.56806 20.218 8.39175 19.7646 8.03913L12.9823 2.764C12.631 2.49075 12.4553 2.35412 12.2613 2.3016C12.0902 2.25526 11.9098 2.25526 11.7387 2.3016C11.5447 2.35412 11.369 2.49075 11.0177 2.764Z"
-                           stroke="currentColor"
-                           stroke-width="1.5"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                           style="color: var(--gold); flex-shrink: 0"
-                        />
-                     </svg>
-                     Alojamiento
-                  </div>
-                  <p class="transport-body">
-                     Recomendamos el <strong>NH Palacio de Aranjuez</strong> y
-                     el <strong>Hotel Infantas de Aranjuez</strong>, ambos en el
-                     centro a 10 min de la finca. Reservad con antelación.
-                  </p>
-               </div>
-
-               <div style="margin-top: 36px">
                   <a
-                     class="btn-solid"
-                     href="https://www.google.com/maps/place/Finca+el+Regajal/@40.0055278,-3.6063467,15z"
-                     target="_blank"
-                     >Abrir en Google Maps</a
+                     class="ev-link"
+                     href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20270424T110000Z%0ADTEND:20270425T000000Z%0ASUMMARY:Boda%20Luc%C3%ADa%20%26%20Pablo%0ALOCATION:Finca%20El%20Regajal%2C%20Aranjuez%0AEND:VEVENT%0AEND:VCALENDAR"
+                     download="boda-lucia-pablo.ics"
                   >
+                     Añadir a Apple Calendar
+                     <span class="ev-link-arrow">→</span>
+                  </a>
                </div>
             </div>
          </div>
       </section>
 
-      <!-- 5. ARANJUEZ -->
+
+      <!-- 5. ARANJUEZ / ESTANCIA -->
       <section id="aranjuez">
          <div class="reveal">
+            <span class="section-label">Estancia</span>
+            <h2 class="section-title">Aranjuez</h2>
+            <p class="section-body" style="margin: 0 auto">
+               Para los que venís de fuera de Aranjuez y decidáis quedaros
+               alguna noche, os dejamos algunas recomendaciones de
+               alojamiento, restaurantes donde disfrutar de la gastronomía
+               local y lugares con encanto que merece la pena ver.
+            </p>
+         </div>
+
+         <div class="estancia-info reveal">
+            <div class="estancia-block">
+               <h3 class="estancia-block-title">Dónde hospedarse</h3>
+               <p class="estancia-block-text">
+                  Encontraréis diferentes opciones en Aranjuez, desde
+                  apartamentos y casas completas en plataformas como Booking
+                  o Airbnb, hasta hostales y hoteles. La finca está a unos
+                  4 km de Aranjuez y, al ser una ciudad pequeña, las
+                  distancias son cortas, por lo que cualquier elección será
+                  una buena opción. Indicadnos en el formulario si
+                  necesitáis alojamiento y lo tendremos en cuenta para
+                  preparar una reserva conjunta para la boda.
+                  <br /><br />
+                  Nuestros favoritos son el <strong>Hotel NH****</strong>,
+                  el <strong>Hotel Equo***</strong> (nuestra recomendación
+                  por su cercanía tanto a la finca como al centro de
+                  Aranjuez y por su relación calidad-precio) y
+                  <strong>El Cocherón 1919**</strong>.
+               </p>
+            </div>
+            <div class="estancia-block">
+               <h3 class="estancia-block-title">Dónde comer</h3>
+               <p class="estancia-block-text">
+                  Algunos restaurantes típicos con gastronomía local de
+                  calidad son <strong>El Rana Verde</strong>,
+                  <strong>El Corral de la Abuela</strong>,
+                  <strong>Casa José</strong>, <strong>El Parterre</strong>,
+                  <strong>El Tomate</strong> y <strong>Aguatinta</strong>.
+               </p>
+            </div>
+         </div>
+
+         <div class="reveal" style="margin-top: 80px">
             <span class="section-label">Aranjuez</span>
             <h2 class="section-title">Qué visitar</h2>
             <p class="section-body" style="margin: 0 auto">
@@ -484,9 +510,16 @@
                <div class="lugar-card-body">
                   <h3 class="lugar-card-title">Gastronomía local</h3>
                   <p class="lugar-card-text">
-                     Abril es el mes por excelencia de la huerta ribereña. No os
-                     podéis ir sin probar los dos tesoros de Aranjuez en su
-                     mejor momento.
+                     Abril es el mes por excelencia de la huerta ribereña. No
+                     os podéis ir sin probar los dos tesoros de Aranjuez en
+                     su mejor momento: el fresón y los espárragos verdes. Si
+                     queréis llevaros producto local de calidad, hay varias
+                     fruterías tradicionales donde lo podéis encontrar.
+                     Preguntadnos y os recomendaremos nuestros sitios
+                     favoritos. También hay otros productos excelentes de la
+                     huerta de Aranjuez como las alcachofas y la auténtica
+                     fresa de Aranjuez, una variedad tradicional pequeña y
+                     muy aromática, distinta del fresón comúnmente conocido.
                   </p>
                </div>
             </div>
@@ -508,58 +541,10 @@
                   <h3 class="lugar-card-title">Casco histórico</h3>
                   <p class="lugar-card-text">
                      Calles con sabor real, la Plaza de la Mariblanca, las
-                     famosas fresas con nata y los espárragos blancos de
+                     famosas fresas con nata y los espárragos verdes de
                      temporada.
                   </p>
                </div>
-            </div>
-         </div>
-      </section>
-
-      <!-- 6. GALERÍA -->
-      <section id="galeria">
-         <div class="reveal">
-            <span class="section-label">El Regajal</span>
-            <h2 class="section-title" style="color: #fff">Nuestro lugar</h2>
-            <p
-               class="section-body"
-               style="color: rgba(255, 255, 255, 0.5); margin: 0 auto 0"
-            >
-               Viñedos, jardines, cenadores y una luz al atardecer que hace que
-               todo brille un poco más.
-            </p>
-         </div>
-
-         <div class="gallery-grid reveal">
-            <div class="gallery-cell">
-               <img
-                  src="https://elregajal.es/wp-content/themes/yootheme/cache/1c/05.06.2019-20-1c19d306.jpeg"
-                  alt="Salón de bodas El Regajal"
-               />
-            </div>
-            <div class="gallery-cell">
-               <img
-                  src="https://elregajal.es/wp-content/themes/yootheme/cache/f2/Recurso-7ELREGAJAL-f212d668.jpeg"
-                  alt="Patio nocturno El Regajal"
-               />
-            </div>
-            <div class="gallery-cell">
-               <img
-                  src="https://elregajal.es/wp-content/themes/yootheme/cache/71/freecompress-aperitivo-1-scaled-71845626.jpeg"
-                  alt="Aperitivo El Regajal"
-               />
-            </div>
-            <div class="gallery-cell">
-               <img
-                  src="https://elregajal.es/wp-content/themes/yootheme/cache/57/freecompress-Pabellon-1-scaled-57101562.jpeg"
-                  alt="Pabellón El Regajal"
-               />
-            </div>
-            <div class="gallery-cell">
-               <img
-                  src="https://elregajal.es/wp-content/themes/yootheme/cache/06/ISA-Y-MARCO-BODA-107_resized-062961fd.jpeg"
-                  alt="Boda en El Regajal"
-               />
             </div>
          </div>
       </section>
@@ -574,40 +559,52 @@
 
             <div class="faq-item reveal">
                <button class="faq-q" onclick="toggleFaq(this)">
-                  ¿Cuál es el código de vestimenta?
+                  ¿Puedo venir con acompañante?
                   <span class="faq-arrow">+</span>
                </button>
                <div class="faq-a">
-                  <strong>Formal / Cocktail elegante.</strong> Os pedimos que
-                  vengáis arreglados: traje o esmoquin para ellos, vestido midi,
-                  largo o traje de chaqueta para ellas. Evitad el blanco y el
-                  negro riguroso. ¡Queremos una boda de color y elegancia!
+                  Nos encantaría conocer a esa persona tan especial para ti
+                  antes de la boda, si aún no hemos tenido la oportunidad.
+                  Por eso, cada invitación está dirigida a las personas que
+                  queremos que nos acompañen en este día tan importante para
+                  nosotros, y encontraréis a vuestro acompañante expresamente
+                  indicado en ella.
                </div>
             </div>
 
             <div class="faq-item reveal">
                <button class="faq-q" onclick="toggleFaq(this)">
-                  ¿Hay opciones de alojamiento cerca?
+                  ¿Hay transporte organizado desde algún punto?
                   <span class="faq-arrow">+</span>
                </button>
                <div class="faq-a">
-                  Sí. Recomendamos el <strong>NH Palacio de Aranjuez</strong> (4
-                  estrellas, en el centro), el
-                  <strong>Hotel Infantas de Aranjuez</strong> y casas rurales en
-                  los alrededores. Reservad con antelación, especialmente si
-                  venís de fuera de Madrid.
+                  Ambas fincas se encuentran a unos 4 km del centro de
+                  Aranjuez, por lo que no hemos considerado necesario
+                  organizar transporte conjunto. Así tenéis la libertad de
+                  volver cuando queráis, sin estar condicionados por los
+                  horarios de autobús. Podéis llegar y volver por vuestra
+                  cuenta, en coche o taxi. Para facilitaros la ida y la
+                  vuelta de la boda, hemos acordado con los taxis de
+                  Aranjuez una tarifa fija por trayecto a El Regajal
+                  (pendiente de confirmar).
                </div>
             </div>
 
             <div class="faq-item reveal">
                <button class="faq-q" onclick="toggleFaq(this)">
-                  ¿Hay parking en la finca?
+                  ¿Es obligatorio cumplir el dress code?
                   <span class="faq-arrow">+</span>
                </button>
                <div class="faq-a">
-                  Sí, Finca El Regajal dispone de amplio parking gratuito. Si
-                  venís en grupo os recomendamos compartir coche desde Madrid
-                  para hacer el viaje más cómodo y sostenible.
+                  No es una norma estricta. El código de vestimenta es una
+                  recomendación que nos hace ilusión que tengáis en cuenta
+                  para contribuir al estilo y ambiente que nos gustaría
+                  crear en nuestro fin de semana especial.
+                  <br /><br />
+                  Sobre todo en la preboda, donde no existe un protocolo tan
+                  definido como en una boda, esperamos que os sirva como
+                  referencia para encontrar un look con el que os sintáis
+                  cómodos y encaje con el carácter que queremos darle.
                </div>
             </div>
 
@@ -639,13 +636,38 @@
 
             <div class="faq-item reveal">
                <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿Qué hacemos si finalmente no puedo asistir o deseo modificar mi confirmación?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  Puedes rellenar de nuevo el formulario con tu nueva
+                  elección y avisarnos lo antes posible para que podamos
+                  organizar todo con tiempo.
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿A qué hora terminará la fiesta?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  La fiesta en la finca El Regajal terminará sobre las 23 h.
+                  Para los que aún tengan ganas de más, en el centro de
+                  Aranjuez hay pubs nocturnos que suelen tener ambiente los
+                  sábados, o se podrá continuar la fiesta en Casa Triviño
+                  Eventos (pendiente de confirmar).
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
                   ¿A quién puedo contactar para dudas?
                   <span class="faq-arrow">+</span>
                </button>
                <div class="faq-a">
-                  Para cualquier duda podéis escribir a
-                  <strong>boda@luciapablo2027.com</strong> o llamar al
-                  <strong>+34 600 000 000</strong>. Os responderemos lo antes
+                  Para cualquier duda podéis escribirnos o llamarnos a
+                  nuestros teléfonos personales. Os responderemos lo antes
                   posible.
                </div>
             </div>
@@ -656,7 +678,7 @@
       <section id="rsvp">
          <div class="rsvp-inner">
             <div class="reveal">
-               <span class="section-label">RSVP</span>
+               <span class="section-label">Confirmación</span>
                <h2 class="section-title">¿Nos acompañas?</h2>
                <p class="section-body">
                   Confírmanos tu asistencia antes del
@@ -667,29 +689,17 @@
             </div>
 
             <form class="rsvp-form reveal" id="rsvp-form">
-               <div class="rsvp-row">
-                  <div class="rsvp-field">
-                     <label for="r-nombre" class="sr-only"
-                        >Nombre completo</label
-                     >
-                     <input
-                        type="text"
-                        id="r-nombre"
-                        name="nombre"
-                        placeholder="Tu nombre completo"
-                        autocomplete="name"
-                     />
-                  </div>
-                  <div class="rsvp-field">
-                     <label for="r-email" class="sr-only">Email</label>
-                     <input
-                        type="email"
-                        id="r-email"
-                        name="email"
-                        placeholder="Tu email"
-                        autocomplete="email"
-                     />
-                  </div>
+               <div class="rsvp-field">
+                  <label for="r-nombre" class="sr-only"
+                     >Nombre completo</label
+                  >
+                  <input
+                     type="text"
+                     id="r-nombre"
+                     name="nombre"
+                     placeholder="Tu nombre completo"
+                     autocomplete="name"
+                  />
                </div>
 
                <div class="rsvp-row">
@@ -699,12 +709,18 @@
                      >
                      <select id="r-asistencia" name="asistencia">
                         <option value="" disabled selected>
-                           ¿Confirmas asistencia?
+                           ¿A qué asistirás?
                         </option>
-                        <option value="si">
-                           Sí, asistiré con mucho gusto 🎉
+                        <option value="preboda">
+                           Solo a la preboda 🥂
                         </option>
-                        <option value="no">Lo siento, no podré asistir</option>
+                        <option value="boda">Solo a la boda 💍</option>
+                        <option value="ambas">
+                           A la preboda y a la boda 🎉
+                        </option>
+                        <option value="ninguna">
+                           Lo siento, no podré asistir
+                        </option>
                      </select>
                   </div>
                   <div class="rsvp-field">
@@ -721,24 +737,19 @@
                   </div>
                </div>
 
+               <!-- Campos dinámicos: nombre y menú de cada persona -->
+               <div id="personas-detalle"></div>
+
                <div class="rsvp-field">
-                  <label for="r-menu" class="sr-only">Menú especial</label>
-                  <select id="r-menu" name="menu">
+                  <label for="r-alojamiento" class="sr-only"
+                     >¿Necesitas alojamiento?</label
+                  >
+                  <select id="r-alojamiento" name="alojamiento">
                      <option value="" disabled selected>
-                        Menú especial (si aplica)
+                        ¿Necesitas alojamiento en Aranjuez?
                      </option>
-                     <option value="sin-restricciones">
-                        Sin restricciones
-                     </option>
-                     <option value="vegetariano">Vegetariano</option>
-                     <option value="vegano">Vegano</option>
-                     <option value="sin-gluten">Sin gluten (celíaco)</option>
-                     <option value="sin-lactosa">Sin lactosa</option>
-                     <option value="sin-mariscos">Sin mariscos</option>
-                     <option value="sin-frutos-secos">Sin frutos secos</option>
-                     <option value="otro">
-                        Otro (indicar en el campo de abajo)
-                     </option>
+                     <option value="si">Sí, me vendría bien</option>
+                     <option value="no">No, ya tengo dónde quedarme</option>
                   </select>
                </div>
 
@@ -758,15 +769,25 @@
             </form>
 
             <p class="rsvp-success" id="rsvp-success">
-               ¡Gracias! Ya tenemos ganas<br />de veros el 24 de abril ✦
+               ¡Gracias por formar parte de este momento tan especial<br />para nosotros!
             </p>
          </div>
       </section>
 <!-- SECCIÓN SUBIR FOTOS -->
-<section id="galeria" class="rsvp-section reveal">
+<section id="fotos" class="rsvp-section reveal">
   <div class="container">
-    <h2 class="section-title">Comparte tus Fotos</h2>
-    <p class="section-subtitle">¡Sube los momentos inolvidables que captes durante la boda!</p>
+    <span class="section-label">Comparte tus fotos</span>
+    <h2 class="section-title">Comparte tus fotos</h2>
+    <p class="section-subtitle">
+      Nos encantará revivir la boda y la preboda desde vuestra perspectiva,
+      descubrir esos momentos que quizá nosotros no llegamos a ver y
+      guardar para siempre todos esos recuerdos compartidos con vosotros.
+      <br /><br />
+      Por eso, os animamos a subir aquí vuestras fotos y, sobre todo,
+      vuestros vídeos. Queremos tenerlos todos para poder volver a ese fin
+      de semana, a esas risas y a esos momentos juntos siempre que
+      queramos. 🤍
+    </p>
 
     <div class="rsvp-card">
       <form id="foto-form" onsubmit="event.preventDefault(); uploadFoto();">
@@ -776,16 +797,20 @@
         </div>
 
         <div class="form-group">
-          <label for="f-archivo">Selecciona tu foto</label>
-          <input type="file" id="f-archivo" accept="image/*" required>
+          <label for="f-archivo">Selecciona tu foto o vídeo</label>
+          <input type="file" id="f-archivo" accept="image/*,video/*" required>
         </div>
 
-        <button type="submit" id="btn-foto" class="rsvp-submit">SUBIR FOTO</button>
+        <button type="submit" id="btn-foto" class="rsvp-submit">SUBIR FOTO O VÍDEO</button>
       </form>
 
       <div id="foto-success" style="display: none; text-align: center; padding: 20px;">
         <p style="font-size: 18px; color: var(--dark, #333);">¡Foto subida con éxito! Gracias por compartirla. ❤️</p>
       </div>
+    </div>
+
+    <div id="grid-fotos" class="fotos-grid">
+      <p style="text-align:center; width:100%; color: var(--muted);">Cargando fotos…</p>
     </div>
   </div>
 </section>
