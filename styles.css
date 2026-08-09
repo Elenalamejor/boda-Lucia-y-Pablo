@@ -138,16 +138,30 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 }
 .envelope.open ~ .intro-hint { opacity: 0; }
 
-/* Móvil: el sobre domina la pantalla completa, tipografía más grande y táctil */
+/* Móvil: el sobre es la pantalla, de borde a borde, sin margen alrededor */
 @media (max-width: 600px) {
-  #intro-overlay { gap: 6vh; padding: 4vh 20px; }
-  .envelope { width: 92vw; aspect-ratio: 5 / 6.4; }
-  .env-letter-content { gap: 16px; }
-  .intro-hint { font-size: 12px; letter-spacing: 2.5px; text-align: center; }
+  #intro-overlay { padding: 0; gap: 0; }
+  .envelope {
+    width: 100vw;
+    height: 100dvh;
+    aspect-ratio: auto;
+    animation: envFloatMobile 5s ease-in-out infinite;
+  }
+  .env-back { box-shadow: none; }
+  .env-letter { box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+  .env-letter-content { gap: 18px; }
+  .intro-hint {
+    position: absolute;
+    left: 50%; bottom: max(32px, env(safe-area-inset-bottom) + 24px);
+    transform: translateX(-50%);
+    font-size: 12px; letter-spacing: 2.5px; text-align: center;
+    white-space: nowrap; z-index: 6;
+  }
 }
 
-@media (max-width: 380px) {
-  .envelope { width: 94vw; }
+@keyframes envFloatMobile {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
