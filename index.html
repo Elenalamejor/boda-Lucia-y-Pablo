@@ -11,76 +11,43 @@
          property="og:description"
          content="24 de Abril de 2027 · Finca El Regajal, Aranjuez. ¡Te esperamos!"
       />
-     
+      <meta
+         property="og:image"
+         content="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=1000"
+      />
       <meta property="og:url" content="https://tu-boda.netlify.app" />
       <meta property="og:type" content="website" />
 
       <!-- Fuentes -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link
-         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Beau+Rivage&display=swap"
+         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap"
          rel="stylesheet"
       />
 
       <!-- Estilos -->
       <link rel="stylesheet" href="styles.css" />
    </head>
-   <body>
-      <!-- SOBRE DE BIENVENIDA -->
-      <div id="intro-overlay">
-         <div
-            class="envelope"
-            id="envelope"
-            role="button"
-            tabindex="0"
-            aria-label="Abrir la invitación"
-         >
-            <div class="env-back"></div>
-            <div class="env-letter">
-               <div class="env-letter-content">
-                  <span class="env-letter-eyebrow">Os invitamos a la boda de</span>
-                  <span class="env-letter-names">Lucía <em>&</em> Pablo</span>
-                  <span class="env-letter-date">24 · 04 · 2027</span>
-               </div>
-            </div>
-            <div class="env-pocket"></div>
-            <div class="env-flap">
-            </div>
-            <div class="env-seal">
-               <svg class="env-seal-leaf" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2.5c-3.2 3-5.4 6.7-5.4 10.2 0 3.1 2.2 5.3 5.4 5.3s5.4-2.2 5.4-5.3c0-3.5-2.2-7.2-5.4-10.2z" />
-                  <path
-                     d="M12 6.5v11M9.3 10.2l2.7 1.8M14.7 10.2l-2.7 1.8M9 13.6l3 2M15 13.6l-3 2"
-                     stroke="currentColor"
-                     stroke-width="0.55"
-                     fill="none"
-                     stroke-linecap="round"
-                  />
-               </svg>
-            </div>
-         </div>
-         <p class="intro-hint" id="intro-hint">Toca el sobre para abrir la invitación</p>
-      </div>
-
+   
       <!-- MENÚ MÓVIL -->
       <div id="mobile-menu">
          <button class="close-btn" onclick="closeMobileMenu()">✕</button>
-         <a href="#bienvenida" onclick="closeMobileMenu()">Nosotros</a>
-         <a href="#eldia" onclick="closeMobileMenu()">El día</a>
-         <a href="#aranjuez" onclick="closeMobileMenu()">Aranjuez</a>
-         <a href="#faq" onclick="closeMobileMenu()">Información</a>
-         <a href="#rsvp" onclick="closeMobileMenu()">Confirmar</a>
-         <a href="#fotos" onclick="closeMobileMenu()">Fotos</a>
+         <a href="#bienvenida" onclick="closeMobileMenu()">Bienvenidos</a>
+         <a href="#eldia" onclick="closeMobileMenu()">Agenda</a>
+         <a href="#aranjuez" onclick="closeMobileMenu()">Estancia</a>
+         <a href="#faq" onclick="closeMobileMenu()">Nuestro lugar</a>
+         <a href="#rsvp" onclick="closeMobileMenu()">Confirmar asistencia</a>
+         <a href="#fotos" onclick="closeMobileMenu()">Comparte tus fotos</a>
       </div>
 
       <!-- NAV -->
       <nav id="nav">
          <div class="nav-logo">L & P</div>
          <ul class="nav-links">
-            <li><a href="#bienvenida">Nosotros</a></li>
-            <li><a href="#eldia">El día</a></li>
-            <li><a href="#aranjuez">Aranjuez</a></li>
-            <li><a href="#faq">Información</a></li>
+            <li><a href="#bienvenida">Bienvenidos</a></li>
+            <li><a href="#eldia">Agenda</a></li>
+            <li><a href="#aranjuez">Estancia</a></li>
+            <li><a href="#faq">Nuestro lugar</a></li>
             <li><a href="#rsvp">Confirmar asistencia</a></li>
             <li><a href="#fotos">Comparte tus fotos</a></li>
          </ul>
@@ -166,15 +133,21 @@
       <section id="eldia">
          <div class="eldia-header reveal">
             <span class="section-label">Agenda</span>
-            <h2 class="eldia-title">Un fin de<br />semana juntos</h2>
+            <h2 class="eldia-title">Un fin de semana juntos</h2>
          </div>
 
          <div class="eldia-grid">
             <!-- Preboda -->
             <div class="reveal">
                <span class="ev-number">01.</span>
-               <!-- TODO: añadir aquí una foto bonita de Casa Triviño Eventos -->
-               <h3 class="ev-title">La noche<br />antes</h3>
+               <div class="ev-photo">
+                  <img
+                     src="/Users/elenamarintrivi/Desktop/boda/IMG_3465.jpeg"
+                     alt="Casa Triviño Eventos, Aranjuez"
+                     loading="lazy"
+                  />
+               </div>
+               <h3 class="ev-title">La noche antes</h3>
                <p class="ev-desc">
                   Empezamos a celebrar la noche antes con un picoteo informal
                   donde reunirnos todos los que, desde diferentes ámbitos,
@@ -223,6 +196,15 @@
                   </div>
                </details>
 
+               <div class="ev-map">
+                  <iframe
+                     src="https://maps.google.com/maps?q=Casa+Trivi%C3%B1o+Eventos,+Aranjuez&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                     loading="lazy"
+                     referrerpolicy="no-referrer-when-downgrade"
+                     title="Mapa Casa Triviño Eventos, Aranjuez"
+                  ></iframe>
+               </div>
+
                <div class="ev-links">
                   <a
                      class="ev-link"
@@ -230,14 +212,6 @@
                      target="_blank"
                   >
                      Cómo llegar en coche · Google Maps
-                     <span class="ev-link-arrow">→</span>
-                  </a>
-                  <a
-                     class="ev-link"
-                     href="https://maps.apple.com/?q=Casa+Trivi%C3%B1o+Eventos,+Aranjuez"
-                     target="_blank"
-                  >
-                     Cómo llegar en coche · Apple Maps
                      <span class="ev-link-arrow">→</span>
                   </a>
                   <a
@@ -277,7 +251,7 @@
                      loading="lazy"
                   />
                </div>
-               <h3 class="ev-title">El gran<br />día</h3>
+               <h3 class="ev-title">El gran día</h3>
                <p class="ev-desc">
                   Llega el gran día que con tanta ilusión hemos estado
                   preparando. Ceremonia junto a los viñedos, cóctel en los
@@ -315,6 +289,15 @@
                   </div>
                </details>
 
+               <div class="ev-map">
+                  <iframe
+                     src="https://maps.google.com/maps?q=Finca+El+Regajal,+Aranjuez&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                     loading="lazy"
+                     referrerpolicy="no-referrer-when-downgrade"
+                     title="Mapa Finca El Regajal, Aranjuez"
+                  ></iframe>
+               </div>
+
                <div class="ev-links">
                   <a
                      class="ev-link"
@@ -322,14 +305,6 @@
                      target="_blank"
                   >
                      Cómo llegar en coche · Google Maps
-                     <span class="ev-link-arrow">→</span>
-                  </a>
-                  <a
-                     class="ev-link"
-                     href="https://maps.apple.com/?q=Finca+El+Regajal,+Aranjuez"
-                     target="_blank"
-                  >
-                     Cómo llegar en coche · Apple Maps
                      <span class="ev-link-arrow">→</span>
                   </a>
                   <a
@@ -795,7 +770,7 @@
       Por eso, os animamos a subir aquí vuestras fotos y, sobre todo,
       vuestros vídeos. Queremos tenerlos todos para poder volver a ese fin
       de semana, a esas risas y a esos momentos juntos siempre que
-      queramos. 🤎
+      queramos. 
     </p>
 
     <div class="rsvp-card">
@@ -819,7 +794,7 @@
     </div>
 
     <div id="grid-fotos" class="fotos-grid">
-      <p style="text-align:center; width:100%; color: var(--muted);">Cargando fotos…</p>
+
     </div>
   </div>
 </section>
