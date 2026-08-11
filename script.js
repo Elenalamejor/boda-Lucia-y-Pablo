@@ -1,5 +1,5 @@
 /* ── URL DE GOOGLE APPS SCRIPT ── */
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSjYOyJaRYFJtXkt-wzE4bLI85R7VCOK_sjLBz4y4aomZiuSVSl7lJx1DPn2Q_cflBig/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxW32_yCuvdeN0CqvbILYCsPb-MlFco-jlDPwN6Djmq19Mhkgrj4mu6e_lMfuvqckivDg/exec';
 /* ── SOBRE DE BIENVENIDA ── */
 (function () {
   const overlay  = document.getElementById('intro-overlay');
